@@ -1,0 +1,1 @@
+C:\Users\artwh\Downloads\Star Commander MFD\StarCitizenButtonBoxServer\obj\Debug\net8.0-windows10.0.17763.0\StarCitizenButtonBoxServer.csproj.AssemblyReference.cache

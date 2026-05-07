@@ -1,0 +1,28 @@
+<Window x:Class="StarCitizenButtonBoxServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tb="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.NotifyIcon.Wpf"
+        Title="Star Citizen Button Box Server"
+        Icon="Star Citizen BBS.ico"
+        Width="0" Height="0"
+        WindowStyle="None"
+        ShowInTaskbar="False"
+        Visibility="Hidden"
+        AllowsTransparency="True">
+    <Grid Width="0" Height="0">
+        <tb:TaskbarIcon x:Name="Tray"
+                        IconSource="/Star Citizen BBS.ico"
+                        ToolTipText="Star Citizen Button Box Server"
+                        MenuActivation="RightClick"
+                        TrayMouseDoubleClick="Tray_DoubleClick"
+                        TrayContextMenuOpen="Tray_TrayContextMenuOpen">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Configure Server" Click="OpenServer_Click" />
+                    <Separator/>
+                    <MenuItem Header="Exit" Click="Exit_Click" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+    </Grid>
+</Window>
