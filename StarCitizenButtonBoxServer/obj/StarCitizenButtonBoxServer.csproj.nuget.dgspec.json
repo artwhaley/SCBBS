@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\artwh\\Downloads\\Star Commander MFD\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj": {}
+    "C:\\Users\\artwh\\OneDrive\\Documents\\SCMFD\\SCBBS\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\artwh\\Downloads\\Star Commander MFD\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj": {
+    "C:\\Users\\artwh\\OneDrive\\Documents\\SCMFD\\SCBBS\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\artwh\\Downloads\\Star Commander MFD\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj",
+        "projectUniqueName": "C:\\Users\\artwh\\OneDrive\\Documents\\SCMFD\\SCBBS\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj",
         "projectName": "StarCitizenButtonBoxServer",
-        "projectPath": "C:\\Users\\artwh\\Downloads\\Star Commander MFD\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj",
+        "projectPath": "C:\\Users\\artwh\\OneDrive\\Documents\\SCMFD\\SCBBS\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj",
         "packagesPath": "C:\\Users\\artwh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\artwh\\Downloads\\Star Commander MFD\\StarCitizenButtonBoxServer\\obj\\",
+        "outputPath": "C:\\Users\\artwh\\OneDrive\\Documents\\SCMFD\\SCBBS\\StarCitizenButtonBoxServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,4 +1,4 @@
-Set-Location "c:\Users\artwh\Documents\custom-driver\StarCitizenButtonBoxServer"
+Set-Location $PSScriptRoot
 
 $replacements = @{
     "ButtonBoxWebSocketServer" = "ButtonBoxServer"

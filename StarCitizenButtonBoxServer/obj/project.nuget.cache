@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W/Nqem4d8ss=",
+  "dgSpecHash": "5Xh2snwCwNs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\artwh\\Downloads\\Star Commander MFD\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj",
+  "projectFilePath": "C:\\Users\\artwh\\OneDrive\\Documents\\SCMFD\\SCBBS\\StarCitizenButtonBoxServer\\StarCitizenButtonBoxServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artwh\\.nuget\\packages\\common.logging\\3.4.1\\common.logging.3.4.1.nupkg.sha512",
     "C:\\Users\\artwh\\.nuget\\packages\\common.logging.core\\3.4.1\\common.logging.core.3.4.1.nupkg.sha512",
