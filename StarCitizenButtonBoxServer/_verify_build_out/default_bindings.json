@@ -1,1838 +1,2645 @@
 {
-  "Bindings": [
-    {
-      "CommandId": "modes_mining",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 1
-      },
-      "Keyboard": {
-        "Key": "D7",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_salvage",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 2
-      },
-      "Keyboard": {
-        "Key": "D6",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_scanning",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 3
-      },
-      "Keyboard": {
-        "Key": "D5",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_quantum",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 4
-      },
-      "Keyboard": {
-        "Key": "D4",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_missile",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 5
-      },
-      "Keyboard": {
-        "Key": "D2",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_guns",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 6
-      },
-      "Keyboard": {
-        "Key": "D1",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_flight",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 7
-      },
-      "Keyboard": {
-        "Key": "D3",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_turret_1",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 8
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "modes_turret_2",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 9
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "modes_turret_3",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 10
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "modes_master_mode_nav",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 11
-      },
-      "Keyboard": {
-        "Key": "N",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "modes_master_mode_scm",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 12
-      },
-      "Keyboard": {
-        "Key": "S",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "vehicle_toggle_lamp",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 13
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_lamp_on",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 14
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_lamp_off",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 15
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_self_destruct",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 16
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_systems_ready",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 17
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_toggle_doors",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 18
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_open_all_doors",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 19
-      },
-      "Keyboard": {
-        "Key": "D",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "vehicle_close_all_doors",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 20
-      },
-      "Keyboard": {
-        "Key": "D",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "vehicle_toggle_all_locks",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 21
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_lock_all_doors",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 22
-      },
-      "Keyboard": {
-        "Key": "L",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "vehicle_unlock_all_doors",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 23
-      },
-      "Keyboard": {
-        "Key": "L",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "vehicle_toggle_port_lock",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 24
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "vehicle_unlock_ports",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 25
-      },
-      "Keyboard": {
-        "Key": "P",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "vehicle_lock_ports",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 26
-      },
-      "Keyboard": {
-        "Key": "P",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "mfds_select_mfd_1",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 27
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_select_mfd_2",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 28
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_select_mfd_3",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 29
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_select_mfd_4",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 30
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_select_mfd_5",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 31
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_select_mfd_6",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 32
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_next_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 33
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_previous_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 34
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_self_status_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 35
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_target_status_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 36
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_scanning_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 37
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_vehicle_config_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 38
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_communications_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 39
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_ifcs_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 40
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_diagnostics_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 41
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mfds_resource_network_page",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 42
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "view_cycle_camera",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 43
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "view_precision_targeting_toggle",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 44
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "view_precision_targeting_camera_tracking",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 45
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_eject",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 46
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_cruise_control_toggle",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 47
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_cruise_control_on",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 48
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_cruise_control_off",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 49
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_toggle_coupled",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 50
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_coupled",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 51
-      },
-      "Keyboard": {
-        "Key": "T",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "flight_decoupled",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 52
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_speed_limiter_toggle",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 53
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_speed_limiter_up",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 54
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_speed_limiter_down",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 55
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_esp_toggle",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 56
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_toggle_vtol",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 57
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_vtol_on",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 58
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_vtol_off",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 59
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_expand_configuration",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 60
-      },
-      "Keyboard": {
-        "Key": "K",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "flight_retract_configuration",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 61
-      },
-      "Keyboard": {
-        "Key": "K",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "flight_toggle_configuration",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 62
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_autoland",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 63
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_call_atc_hangar",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 64
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_request_cargo_loading",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 65
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_request_jump_drive_jump",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 66
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_toggle_automatic_precision_mode",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 67
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_automatic_precision_on",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 68
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_automatic_precision_off",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 69
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_advanced_hud_on",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 70
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_advanced_hud_off",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 71
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "flight_engage_quantum_drive",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 72
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "docking_toggle_mode",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 73
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "docking_invoke",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 74
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "docking_toggle_camera",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 75
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_auto_on",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 76
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_auto_off",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 77
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_pin_1_lock_unlock_pinned",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 78
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_pin_2_lock_unlock_pinned",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 79
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_pin_3_lock_unlock_pinned",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 80
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_pin_1_pin_unpin_selected",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 81
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_pin_2_pin_unpin_selected",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 82
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_pin_3_pin_unpin_selected",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 83
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_lock_under_reticle",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 84
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_in_view_forward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 85
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_attackers_forward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 86
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_attackers_closest",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 87
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_hostiles_forward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 88
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_hostiles_closest",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 89
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_friendly_forward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 90
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_friendly_closest",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 91
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_all_forward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 92
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_all_backward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 93
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_subtarget_forward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 94
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_cycle_subtarget_backward",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 95
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_subtargeting_mode_off",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 96
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "targeting_hail_target",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 97
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "sensors_ping",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 98
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "sensors_scanning_mode",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 99
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "sensors_increase_scanning_angle",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 100
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "sensors_decrease_scanning_angle",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 101
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mining_fire_laser",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 102
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mining_switch_laser_mode",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 103
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mining_activate_module_1",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 104
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mining_activate_module_2",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 105
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "mining_activate_module_3",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 106
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_fire_focused",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 107
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_toggle_fracture",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 108
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_toggle_disintegrate",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 109
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_toggle_mode_gimbal",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 110
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_increase_beam_spacing",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 111
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_decrease_beam_spacing",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 112
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_toggle_beam_axis",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 113
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_cycle_left_modifiers",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 114
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "salvage_cycle_right_modifiers",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 115
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_cycle_mouse_mode",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 116
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_exit_remote",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 117
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_gyro_stabilization",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 118
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_next_remote",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 119
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_previous_remote",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 120
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_toggle_esp",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 121
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_recenter",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 122
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "turrets_change_position",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 123
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_toggle_gimbal",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 124
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_cycle_aim_mode",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 125
-      },
-      "Keyboard": {
-        "Key": "X",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "weapons_toggle_staggered_fire",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 126
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_set_lead_pips",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 127
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_set_lag_pips",
-      "Vjoy": {
-        "VjoyDeviceId": 1,
-        "VjoyButtonId": 128
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_gunnery_ui_toggle_magnification",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 1
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_increase_manual_convergence",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 2
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_decrease_manual_convergence",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 3
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_reset_manual_convergence",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 4
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_preset_group_1",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 5
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_preset_group_2",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 6
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_preset_emps",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 7
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "weapons_preset_quantum_jammers",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 8
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "missiles_next_type",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 9
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "missiles_previous_type",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 10
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "missiles_increase_armed",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 11
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "missiles_decrease_armed",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 12
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "missiles_bomb_toggle_impact_tap",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 13
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "cm_decoy_launch_burst",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 14
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "cm_decoy_increase_burst",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 15
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "cm_decoy_decrease_burst",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 16
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "cm_decoy_panic_launch",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 17
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "cm_noise_deploy",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 18
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "shields_raise_front",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 19
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "shields_raise_back",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 20
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "shields_raise_left",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 21
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "shields_raise_right",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 22
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "shields_raise_top",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 23
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "shields_raise_bottom",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 24
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "shields_reset",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 25
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "power_thrusters_on",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 26
-      },
-      "Keyboard": {
-        "Key": "NumPad2",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "power_thrusters_off",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 27
-      },
-      "Keyboard": {
-        "Key": "NumPad2",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "power_engines_increase",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 28
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "power_engines_decrease",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 29
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "power_engines_max",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 30
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "power_shields_increase",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 31
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "power_shields_decrease",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 32
-      },
-      "Keyboard": {
-        "Key": "NumPad3",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "power_shields_max",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 33
-      },
-      "Keyboard": {
-        "Key": "NumPad3",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "power_weapons_increase",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 34
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "power_weapons_decrease",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 35
-      },
-      "Keyboard": {
-        "Key": "NumPad4",
-        "HoldMs": 25,
-        "LCtrl": true,
-        "RCtrl": false,
-        "LShift": false,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "power_weapons_max",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 36
-      },
-      "Keyboard": {
-        "Key": "NumPad4",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "power_reset",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 37
-      },
-      "Keyboard": {
-        "Key": "NumPad1",
-        "HoldMs": 25,
-        "LCtrl": false,
-        "RCtrl": false,
-        "LShift": true,
-        "RShift": false,
-        "LAlt": false,
-        "RAlt": false
-      }
-    },
-    {
-      "CommandId": "misc_mobiglass",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 38
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_map",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 39
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_headlights",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 40
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_stand_up",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 41
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_draw_weapon_1",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 42
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_draw_weapon_2",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 43
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_draw_pistol",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 44
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_draw_medpen",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 45
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_inject_self_medpen",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 46
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_draw_gadget",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 47
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_interact_scope",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 48
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_fps_underbarrel",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 49
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_reload_secondary",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 50
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_trigger_mode",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 51
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_holster_all",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 52
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_repool_ammo",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 53
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_customize_weapon",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 54
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_request_rescue",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 55
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_weapon_zeroing_increase",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 56
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_weapon_zeroing_decrease",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 57
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_flashlight_toggle",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 58
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_toggle_equip_helmet",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 59
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_force_respawn",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 60
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_exit_seat",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 61
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_toggle_chat",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 62
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_cycle_chat_lobby",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 63
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_accept_prompt",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 64
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_decline_prompt",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 65
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_comlink_app",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 66
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_head_tracking_hold",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 67
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_recenter_head_tracking",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 68
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_voip_ptt",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 69
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_cycle_audio_channels",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 70
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_toggle_inventory",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 71
-      },
-      "Keyboard": null
-    },
-    {
-      "CommandId": "misc_toggle_loot_screen",
-      "Vjoy": {
-        "VjoyDeviceId": 2,
-        "VjoyButtonId": 72
-      },
-      "Keyboard": null
+  "serverPort": 8080,
+  "bindings": [
+    {
+      "commandId": "modes_mining",
+      "key": "M",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_salvage",
+      "key": "S",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_scanning",
+      "key": "V",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_quantum",
+      "key": "Q",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_missile",
+      "key": "T",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_guns",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_flight",
+      "key": "F",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_turret_1",
+      "key": "VK_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_turret_2",
+      "key": "VK_2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_turret_3",
+      "key": "VK_3",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_master_mode_nav",
+      "key": "DECIMAL",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "modes_master_mode_scm",
+      "key": "INSERT",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_toggle_lamp",
+      "key": "L",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_self_destruct",
+      "key": "BACK",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_systems_ready",
+      "key": "R",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_toggle_doors",
+      "key": "VK_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_open_all_doors",
+      "key": "O",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_close_all_doors",
+      "key": "OEM_4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_toggle_all_locks",
+      "key": "SPACE",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_lock_all_doors",
+      "key": "OEM_6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_unlock_all_doors",
+      "key": "U",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_unlock_ports",
+      "key": "OEM_MINUS",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_lock_ports",
+      "key": "OEM_PLUS",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_gear_dn",
+      "key": "OEM_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_gear_up",
+      "key": "OEM_7",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_hover_lt",
+      "key": "SPACE",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_hover_hvy",
+      "key": "SPACE",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "vehicle_repair_all",
+      "key": "F1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_1",
+      "key": "A",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_2",
+      "key": "B",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_3",
+      "key": "C",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_4",
+      "key": "D",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_5",
+      "key": "E",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_6",
+      "key": "F",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_7",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_select_mfd_8",
+      "key": "H",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_next_page",
+      "key": "E",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_previous_page",
+      "key": "Q",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_self_status_page",
+      "key": "I",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_target_status_page",
+      "key": "J",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_scanning_page",
+      "key": "K",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_vehicle_config_page",
+      "key": "L",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_communications_page",
+      "key": "M",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_ifcs_page",
+      "key": "N",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_diagnostics_page",
+      "key": "O",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mfds_resource_network_page",
+      "key": "P",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "view_cycle_camera",
+      "key": "F4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "view_precision_targeting_toggle",
+      "key": "Q",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_eject",
+      "key": "Y",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_cruise_control_toggle",
+      "key": "C",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_toggle_coupled",
+      "key": "C",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_coupled",
+      "key": "R",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_decoupled",
+      "key": "S",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_speed_limiter_toggle",
+      "key": "T",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_speed_limiter_up",
+      "key": "U",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_speed_limiter_down",
+      "key": "V",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_esp_toggle",
+      "key": "OEM_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_vtol_on",
+      "key": "W",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_vtol_off",
+      "key": "X",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_expand_configuration",
+      "key": "Y",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_retract_configuration",
+      "key": "Z",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_toggle_configuration",
+      "key": "K",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_call_atc_hangar",
+      "key": "N",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_request_cargo_loading",
+      "key": "VK_0",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_request_gateway_opening",
+      "key": null,
+      "mouseAction": "leftClick",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_advanced_hud_on",
+      "key": "VK_2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_advanced_hud_off",
+      "key": "VK_3",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_esp_on",
+      "key": "VK_4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_esp_off",
+      "key": "VK_5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_ifcs_on",
+      "key": "VK_6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_ifcs_off",
+      "key": "VK_7",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_jump",
+      "key": null,
+      "mouseAction": "leftClick",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "flight_vtol_toggle",
+      "key": "K",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "docking_toggle_mode",
+      "key": "N",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "docking_invoke",
+      "key": "N",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "docking_toggle_camera",
+      "key": "VK_0",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_auto_on",
+      "key": "VK_8",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_auto_off",
+      "key": "VK_9",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_pin_1",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "targeting_pin_2",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "targeting_pin_3",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "targeting_recall_1",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "targeting_recall_2",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "targeting_lock_under_reticle",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "targeting_cycle_in_view_forward",
+      "key": "T",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_attackers_forward",
+      "key": "VK_4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_attackers_closest",
+      "key": "VK_4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_hostiles_forward",
+      "key": "VK_5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_hostiles_closest",
+      "key": "VK_5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_friendly_forward",
+      "key": "VK_6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_friendly_closest",
+      "key": "VK_6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_all_forward",
+      "key": "VK_7",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_all_backward",
+      "key": "VK_7",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_subtarget_forward",
+      "key": "R",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_cycle_subtarget_backward",
+      "key": "VK_8",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_subtargeting_mode_off",
+      "key": "R",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_hail_target",
+      "key": "VK_9",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_pin_1_lock_unlock_pinned",
+      "key": "VK_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_pin_2_lock_unlock_pinned",
+      "key": "VK_2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_pin_3_lock_unlock_pinned",
+      "key": "VK_3",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_pin_1_pin_unpin_selected",
+      "key": "VK_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_pin_2_pin_unpin_selected",
+      "key": "VK_2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "targeting_pin_3_pin_unpin_selected",
+      "key": "VK_3",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "sensors_ping",
+      "key": "TAB",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "sensors_scanning_mode",
+      "key": "V",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "sensors_increase_scanning_angle",
+      "key": null,
+      "mouseAction": "scrollUp",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "sensors_decrease_scanning_angle",
+      "key": null,
+      "mouseAction": "scrollDown",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "sensors_scannow",
+      "key": null,
+      "mouseAction": "leftClick",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mining_fire_laser",
+      "key": null,
+      "mouseAction": "leftClick",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mining_switch_laser_mode",
+      "key": null,
+      "mouseAction": "leftClick",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mining_activate_module_1",
+      "key": "VK_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mining_activate_module_2",
+      "key": "VK_2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "mining_activate_module_3",
+      "key": "VK_3",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_toggle_fracture",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "salvage_toggle_disintegrate",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "salvage_fire_left",
+      "key": "A",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_fire_right",
+      "key": "D",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_fire_fracture",
+      "key": "W",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_fire_disintegrate",
+      "key": "S",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_toggle_mode_gimbal",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_increase_beam_spacing",
+      "key": null,
+      "mouseAction": "scrollUp",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_decrease_beam_spacing",
+      "key": null,
+      "mouseAction": "scrollDown",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_toggle_beam_axis",
+      "key": null,
+      "mouseAction": "rightClick",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_cycle_left_modifiers",
+      "key": "L",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "salvage_cycle_right_modifiers",
+      "key": "R",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_cycle_mouse_mode",
+      "key": "Q",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_exit_remote",
+      "key": "Y",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_gyro_stabilization",
+      "key": "E",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_next_remote",
+      "key": "D",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_previous_remote",
+      "key": "A",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_toggle_esp",
+      "key": "TAB",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_recenter",
+      "key": "C",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "turrets_change_position",
+      "key": "S",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_toggle_gimbal",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_cycle_aim_mode",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_toggle_staggered_fire",
+      "key": "OEM_COMMA",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_set_lead_pips",
+      "key": "OEM_PERIOD",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_set_lag_pips",
+      "key": "OEM_2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": true,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_increase_manual_convergence",
+      "key": "OEM_PLUS",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_decrease_manual_convergence",
+      "key": "OEM_MINUS",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_reset_manual_convergence",
+      "key": "OEM_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_group_1",
+      "key": "A",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_group_2",
+      "key": "B",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_group_3",
+      "key": "C",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_group_4",
+      "key": "D",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_emps",
+      "key": "E",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_quantum_snare",
+      "key": "F",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_qid",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_preset_quantum_jammers",
+      "key": "H",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_precision_on",
+      "key": "I",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_precision_off",
+      "key": "J",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "weapons_magnify_toggle",
+      "key": "K",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": true,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "missiles_next_type",
+      "key": null,
+      "mouseAction": "scrollDown",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "missiles_previous_type",
+      "key": null,
+      "mouseAction": "scrollUp",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "missiles_increase_armed",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "missiles_decrease_armed",
+      "key": "G",
+      "mouseAction": "none",
+      "lCtrl": true,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "missiles_bomb_toggle_impact_tap",
+      "key": "B",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "cm_decoy_launch_burst",
+      "key": "H",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "cm_decoy_increase_burst",
+      "key": "H",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "cm_decoy_decrease_burst",
+      "key": "H",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "cm_decoy_panic_launch",
+      "key": "H",
+      "mouseAction": "none",
+      "lCtrl": true,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "cm_noise_deploy",
+      "key": "J",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "shields_raise_front",
+      "key": "NUMPAD8",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "shields_raise_back",
+      "key": "NUMPAD2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "shields_raise_left",
+      "key": "NUMPAD4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "shields_raise_right",
+      "key": "NUMPAD6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "shields_raise_top",
+      "key": "SUBTRACT",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "shields_raise_bottom",
+      "key": "ADD",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "shields_reset",
+      "key": "NUMPAD5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_thrusters_on",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "power_thrusters_off",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "power_engines_increase",
+      "key": "F6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_engines_decrease",
+      "key": "F6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_engines_max",
+      "key": "F6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_shields_increase",
+      "key": "F7",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_shields_decrease",
+      "key": "F7",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_shields_max",
+      "key": "F7",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_weapons_increase",
+      "key": "F5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_weapons_decrease",
+      "key": "F5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_weapons_max",
+      "key": "F5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_reset",
+      "key": "F8",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_shields_toggle",
+      "key": "O",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_engines_toggle",
+      "key": "I",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "power_weapons_toggle",
+      "key": "P",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_mobiglass",
+      "key": "F1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_map",
+      "key": "F2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_headlights",
+      "key": "L",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_stand_up",
+      "key": "Y",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_draw_weapon_1",
+      "key": "VK_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_draw_weapon_2",
+      "key": "VK_2",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_draw_pistol",
+      "key": "VK_3",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_draw_medpen",
+      "key": "VK_4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_inject_self_medpen",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "misc_draw_gadget",
+      "key": "VK_5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_interact_scope",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "misc_fps_underbarrel",
+      "key": "U",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_reload",
+      "key": "R",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_trigger_mode",
+      "key": "B",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_holster_all",
+      "key": "R",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_repool_ammo",
+      "key": "VK_1",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": true,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_customize_weapon",
+      "key": "J",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_request_rescue",
+      "key": "M",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_weapon_zeroing_increase",
+      "key": "PRIOR",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_weapon_zeroing_decrease",
+      "key": "NEXT",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_flashlight_toggle",
+      "key": "T",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_toggle_equip_helmet",
+      "key": "H",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": true,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_force_respawn",
+      "key": "BACK",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_exit_seat",
+      "key": "Y",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_toggle_chat",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "misc_cycle_chat_lobby",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
+    },
+    {
+      "commandId": "misc_accept_prompt",
+      "key": "OEM_4",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_decline_prompt",
+      "key": "OEM_6",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_head_tracking_hold",
+      "key": "DIVIDE",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_recenter_head_tracking",
+      "key": "NUMPAD5",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_voip_ptt",
+      "key": "ADD",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_cycle_audio_channels",
+      "key": "DECIMAL",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_toggle_inventory",
+      "key": "I",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_toggle_loot_screen",
+      "key": "TAB",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_comms_window",
+      "key": "F11",
+      "mouseAction": "none",
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "holdTimeMs": 25
+    },
+    {
+      "commandId": "misc_comlink_app",
+      "key": null,
+      "holdTimeMs": 25,
+      "lCtrl": false,
+      "rCtrl": false,
+      "lShift": false,
+      "rShift": false,
+      "lAlt": false,
+      "rAlt": false,
+      "mouseAction": "none"
     }
   ]
 }

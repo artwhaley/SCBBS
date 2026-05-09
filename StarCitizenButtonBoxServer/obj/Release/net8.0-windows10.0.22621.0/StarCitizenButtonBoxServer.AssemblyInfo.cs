@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StarCitizenButtonBoxServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc09efab5040a7449da0ef5639a1523be4f23c61")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d875d075228d1e40dee2a81b57650d8bad33b1cd")]
 [assembly: System.Reflection.AssemblyProductAttribute("StarCitizenButtonBoxServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StarCitizenButtonBoxServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
