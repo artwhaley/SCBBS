@@ -304,7 +304,7 @@
     {
       "commandId": "vehicle_hover_lt",
       "key": "SPACE",
-      "holdTimeMs": 25,
+      "holdTimeMs": 125,
       "lCtrl": false,
       "rCtrl": false,
       "lShift": false,
@@ -316,7 +316,7 @@
     {
       "commandId": "vehicle_hover_hvy",
       "key": "SPACE",
-      "holdTimeMs": 25,
+      "holdTimeMs": 250,
       "lCtrl": false,
       "rCtrl": false,
       "lShift": false,
@@ -2380,7 +2380,7 @@
     {
       "commandId": "misc_holster_all",
       "key": "R",
-      "holdTimeMs": 25,
+      "holdTimeMs": 250,
       "lCtrl": false,
       "rCtrl": false,
       "lShift": false,
