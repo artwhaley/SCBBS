@@ -89,14 +89,9 @@ C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Rel
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\StarCitizenButtonBoxServer.runtimeconfig.json
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\StarCitizenButtonBoxServer.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\StarCitizenButtonBoxServer.pdb
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Common.Logging.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Common.Logging.Core.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Fleck.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Hardcodet.NotifyIcon.Wpf.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\WindowsInput.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\System.Net.IPNetwork.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Makaretu.Dns.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Makaretu.Dns.Multicast.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\NAudio.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\NAudio.Asio.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\NAudio.Core.dll
@@ -104,11 +99,7 @@ C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Rel
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\NAudio.Wasapi.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\NAudio.WinForms.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\NAudio.WinMM.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\SimpleBase.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Wpf.Ui.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\runtimes\linux-arm\lib\netstandard2.0\Tmds.LibC.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\runtimes\linux-arm64\lib\netstandard2.0\Tmds.LibC.dll
-C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\runtimes\linux-x64\lib\netstandard2.0\Tmds.LibC.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\Microsoft.Windows.SDK.NET.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\bin\Release\net8.0-windows10.0.22621.0\WinRT.Runtime.dll
 C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\StarCitizenButtonBoxServer\obj\Release\net8.0-windows10.0.22621.0\StarCitizenButtonBoxServer.csproj.AssemblyReference.cache

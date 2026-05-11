@@ -112,9 +112,6 @@ public partial class ServerDashboardWindow : FluentWindow
     void RefreshEndpointCore()
     {
         TxtEndpoint.Text = $"{ButtonBoxServer.GetLocalIPv4()}:{App.Bindings.ServerPort}";
-        TxtMdns.Text = App.MdnsInstanceName != null 
-            ? $"broadcasting mDNS as: {App.MdnsInstanceName}" 
-            : "broadcasting mDNS as: (not advertising)";
     }
 
     void Bindings_Click(object sender, RoutedEventArgs e) => BindingsEditorWindow.ShowSingleton();

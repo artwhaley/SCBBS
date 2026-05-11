@@ -43,9 +43,6 @@
                         <ui:TextBlock x:Name="TxtEndpoint" Text="127.0.0.1:8795"
                                       FontSize="32" FontWeight="Bold" Foreground="Black" />
                     </Border>
-                    <ui:TextBlock x:Name="TxtMdns" Text="broadcasting mDNS as: (not advertising)"
-                                  FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                                  HorizontalAlignment="Center"/>
                 </StackPanel>
             </Border>
 

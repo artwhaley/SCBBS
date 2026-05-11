@@ -9,9 +9,6 @@ public partial class App : System.Windows.Application
     public static InputHandler? Keyboard { get; private set; }
     public static MediaHandler Media { get; private set; } = null!;
     public static ButtonBoxServer WebSocket { get; private set; } = null!;
-    private static readonly MdnsAdvertiser MdnsAdvertiser = new();
-
-    public static string? MdnsInstanceName => MdnsAdvertiser.InstanceName;
 
     static Mutex? _singleInstanceMutex;
 
@@ -122,12 +119,10 @@ public partial class App : System.Windows.Application
         try
         {
             WebSocket.Start(Bindings.ServerPort);
-            MdnsAdvertiser.Start($"{Environment.MachineName} Star Commander", Bindings.ServerPort);
             ServerDashboardWindow.RefreshEndpoint();
         }
         catch (Exception ex)
         {
-            MdnsAdvertiser.Stop();
             ServerDashboardWindow.RefreshEndpoint();
             MessageBox.Show($"Could not start WebSocket on port {Bindings.ServerPort}:\n{ex.Message}",
                 "Server error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -146,15 +141,12 @@ public partial class App : System.Windows.Application
     {
         try
         {
-            MdnsAdvertiser.Stop();
             WebSocket.Stop();
             WebSocket.Start(Bindings.ServerPort);
-            MdnsAdvertiser.Start($"{Environment.MachineName} Star Commander", Bindings.ServerPort);
             ServerDashboardWindow.RefreshEndpoint();
         }
         catch (Exception ex)
         {
-            MdnsAdvertiser.Stop();
             ServerDashboardWindow.RefreshEndpoint();
             MessageBox.Show($"Failed to restart WebSocket server:\n{ex.Message}", "Server error",
                 MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -166,7 +158,6 @@ public partial class App : System.Windows.Application
         WebSocket?.Dispose();
         Media?.Dispose();
         Keyboard?.Dispose();
-        MdnsAdvertiser.Stop();
         _singleInstanceMutex?.ReleaseMutex();
         _singleInstanceMutex?.Dispose();
         base.OnExit(e);

@@ -20,6 +20,7 @@ public sealed class ButtonBoxServer : IDisposable
     readonly ConcurrentDictionary<Guid, IWebSocketConnection> _clients = new();
 
     WebSocketServer? _server;
+    Timer? _heartbeatTimer;
     int _port;
 
     public int Port => _port;
@@ -51,10 +52,15 @@ public sealed class ButtonBoxServer : IDisposable
         });
 
         Log($"WebSocket listening on {GetLocalIPv4()}:{port}");
+
+        _heartbeatTimer = new Timer(_ => PingAllClients(), null,
+            TimeSpan.FromSeconds(15), TimeSpan.FromSeconds(15));
     }
 
     public void Stop()
     {
+        _heartbeatTimer?.Dispose();
+        _heartbeatTimer = null;
         foreach (var kv in _clients)
             kv.Value.Close(1001);
         _clients.Clear();
@@ -250,6 +256,15 @@ public sealed class ButtonBoxServer : IDisposable
         catch (Exception ex)
         {
             Log($"SEND FAILED [{peer}] {reason}: {ex.Message}");
+        }
+    }
+
+    void PingAllClients()
+    {
+        foreach (var kv in _clients.ToArray())
+        {
+            try { kv.Value.SendPing([]); }
+            catch { /* OnError → OnClose will fire and remove the client */ }
         }
     }
 
