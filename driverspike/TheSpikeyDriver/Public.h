@@ -1,0 +1,11 @@
+#ifndef PUBLIC_H
+#define PUBLIC_H
+
+#include <initguid.h>
+
+DEFINE_GUID(
+    GUID_DEVINTERFACE_THESPIKEYDRIVER_CONTROL,
+    0xe2590c85, 0x380c, 0x4d9c, 0x81, 0x8c, 0x3a, 0x9f, 0x98, 0xea, 0xa3, 0xd5
+);
+
+#endif

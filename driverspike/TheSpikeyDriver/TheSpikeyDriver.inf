@@ -1,0 +1,117 @@
+﻿;/*++
+;  HIDClass UMDF minidriver.
+;  Win11+ path mirrors vhidmini2 UMDF pattern (MsHidUmdf/WUDFRD include+needs).
+;  Win10 path keeps explicit UMDF service association for reliable local dev installs.
+;--*/
+[Version]
+Signature   = "$Windows NT$"
+Class       = HIDClass
+ClassGuid   = {745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider    = %ManufacturerName%
+DriverVer   = ;
+CatalogFile = TheSpikeyDriver.cat
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+UMDriverCopy = 12,UMDF
+
+[SourceDisksNames]
+1 = %DiskName%,,,
+
+[SourceDisksFiles]
+TheSpikeyDriver.dll = 1
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64.10.0...22000
+%ManufacturerName% = StandardLegacy,NTamd64.10.0...14393
+
+[Standard.NTamd64.10.0...22000]
+%DeviceName% = TheSpikeyDriver_Inst_Win11, root\TheSpikeyDriver
+
+[StandardLegacy.NTamd64.10.0...14393]
+%DeviceName% = TheSpikeyDriver_Inst_Win10, root\TheSpikeyDriver
+
+[TheSpikeyDriver_Inst_Win11.NT]
+CopyFiles = UMDriverCopy
+Include = MsHidUmdf.inf
+Needs = MsHidUmdf.NT
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT
+
+[TheSpikeyDriver_Inst_Win11.NT.hw]
+Include = MsHidUmdf.inf
+Needs = MsHidUmdf.NT.hw
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT.hw
+
+[TheSpikeyDriver_Inst_Win11.NT.Services]
+Include = MsHidUmdf.inf
+Needs = MsHidUmdf.NT.Services
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT.Services
+
+[TheSpikeyDriver_Inst_Win11.NT.Filters]
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT.Filters
+
+[TheSpikeyDriver_Inst_Win11.NT.Wdf]
+UmdfService = "TheSpikeyDriver", TheSpikeyDriver_ServiceInstall
+UmdfServiceOrder = TheSpikeyDriver
+UmdfKernelModeClientPolicy = AllowKernelModeClients
+UmdfFileObjectPolicy = AllowNullAndUnknownFileObjects
+UmdfMethodNeitherAction = Copy
+UmdfFsContextUsePolicy = CanUseFsContext2
+
+[TheSpikeyDriver_Inst_Win10.NT]
+CopyFiles = UMDriverCopy
+
+; Win10: same kernel service pattern as Microsoft WUDFVhidmini / UMDF HID filter docs —
+; AddService lines must be paired with LowerFilters so the reflector sits in the stack.
+; See "Specifying the Reflector in an INF File" (AddService + LowerFilters AddReg).
+[TheSpikeyDriver_Inst_Win10.NT.hw]
+AddReg = TheSpikeyDriver_Win10_DeviceHw_AddReg
+
+[TheSpikeyDriver_Inst_Win10.NT.Filters]
+AddReg = TheSpikeyDriver_Win10_DeviceHw_AddReg
+
+[TheSpikeyDriver_Win10_DeviceHw_AddReg]
+HKR,,"LowerFilters",0x00010008,"WUDFRd"
+
+[TheSpikeyDriver_Inst_Win10.NT.Services]
+AddService = WUDFRd,0x000001f8,WUDFRD_ServiceInstall
+AddService = mshidumdf,0x000001fa,mshidumdf.AddService
+
+[TheSpikeyDriver_Inst_Win10.NT.Wdf]
+UmdfService = "TheSpikeyDriver", TheSpikeyDriver_ServiceInstall
+UmdfServiceOrder = TheSpikeyDriver
+UmdfKernelModeClientPolicy = AllowKernelModeClients
+UmdfFileObjectPolicy = AllowNullAndUnknownFileObjects
+UmdfMethodNeitherAction = Copy
+UmdfFsContextUsePolicy = CanUseFsContext2
+
+[TheSpikeyDriver_ServiceInstall]
+UmdfLibraryVersion = $UMDFVERSION$
+ServiceBinary = "%12%\UMDF\TheSpikeyDriver.dll"
+
+[mshidumdf.AddService]
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %12%\mshidumdf.sys
+
+[WUDFRD_ServiceInstall]
+DisplayName = %WudfRdDisplayName%
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %12%\WUDFRd.sys
+
+[UMDriverCopy]
+TheSpikeyDriver.dll
+
+[Strings]
+ManufacturerName = "TheSpikeyDriver spike"
+DiskName = "TheSpikeyDriver installation disk"
+DeviceName = "TheSpikeyDriver virtual HID device"
+WudfRdDisplayName = "Windows Driver Foundation - User-mode Driver Framework Reflector"

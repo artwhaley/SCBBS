@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 17.0.31903.0
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "TheSpikeyDriver", "TheSpikeyDriver\TheSpikeyDriver.vcxproj", "{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "TestEnumeratorAndClient", "TestEnumeratorAndClient\TestEnumeratorAndClient.vcxproj", "{6CA4E354-1605-4485-A18F-FE438D4EB47E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "KeystrokeInjectorGui", "KeystrokeInjectorGui\KeystrokeInjectorGui.vcxproj", "{D4D9F203-39E1-4A1E-9397-85144F524C6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}.Debug|x64.ActiveCfg = Debug|x64
+		{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}.Debug|x64.Build.0 = Debug|x64
+		{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}.Release|x64.ActiveCfg = Release|x64
+		{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}.Release|x64.Build.0 = Release|x64
+		{6CA4E354-1605-4485-A18F-FE438D4EB47E}.Debug|x64.ActiveCfg = Debug|x64
+		{6CA4E354-1605-4485-A18F-FE438D4EB47E}.Debug|x64.Build.0 = Debug|x64
+		{6CA4E354-1605-4485-A18F-FE438D4EB47E}.Release|x64.ActiveCfg = Release|x64
+		{6CA4E354-1605-4485-A18F-FE438D4EB47E}.Release|x64.Build.0 = Release|x64
+		{D4D9F203-39E1-4A1E-9397-85144F524C6D}.Debug|x64.ActiveCfg = Debug|x64
+		{D4D9F203-39E1-4A1E-9397-85144F524C6D}.Debug|x64.Build.0 = Debug|x64
+		{D4D9F203-39E1-4A1E-9397-85144F524C6D}.Release|x64.ActiveCfg = Release|x64
+		{D4D9F203-39E1-4A1E-9397-85144F524C6D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44911697-E415-4CD8-B812-C9FB0EFC2013}
+	EndGlobalSection
+EndGlobal
