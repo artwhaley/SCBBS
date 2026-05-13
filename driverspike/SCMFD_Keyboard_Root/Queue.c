@@ -4,7 +4,7 @@
 #include "queue.tmh"
 
 NTSTATUS
-TheSpikeyDriverQueueInitialize(
+SCMFD_Keyboard_RootQueueInitialize(
     _In_ WDFDEVICE Device
     )
 {
@@ -16,8 +16,8 @@ TheSpikeyDriverQueueInitialize(
 
     WDF_IO_QUEUE_CONFIG_INIT_DEFAULT_QUEUE(&queueConfig, WdfIoQueueDispatchParallel);
 
-    queueConfig.EvtIoDeviceControl = TheSpikeyDriverEvtIoDeviceControl;
-    queueConfig.EvtIoStop = TheSpikeyDriverEvtIoStop;
+    queueConfig.EvtIoDeviceControl = SCMFD_Keyboard_RootEvtIoDeviceControl;
+    queueConfig.EvtIoStop = SCMFD_Keyboard_RootEvtIoStop;
 
     WDF_OBJECT_ATTRIBUTES_INIT_CONTEXT_TYPE(&queueAttributes, QUEUE_CONTEXT);
 
@@ -37,7 +37,7 @@ TheSpikeyDriverQueueInitialize(
 }
 
 VOID
-TheSpikeyDriverEvtIoDeviceControl(
+SCMFD_Keyboard_RootEvtIoDeviceControl(
     _In_ WDFQUEUE Queue,
     _In_ WDFREQUEST Request,
     _In_ size_t OutputBufferLength,
@@ -45,11 +45,11 @@ TheSpikeyDriverEvtIoDeviceControl(
     _In_ ULONG IoControlCode
     )
 {
-    TheSpikeyDriverEvtIoHidDeviceControl(Queue, Request, OutputBufferLength, InputBufferLength, IoControlCode);
+    SCMFD_Keyboard_RootEvtIoHidDeviceControl(Queue, Request, OutputBufferLength, InputBufferLength, IoControlCode);
 }
 
 VOID
-TheSpikeyDriverEvtIoStop(
+SCMFD_Keyboard_RootEvtIoStop(
     _In_ WDFQUEUE Queue,
     _In_ WDFREQUEST Request,
     _In_ ULONG ActionFlags

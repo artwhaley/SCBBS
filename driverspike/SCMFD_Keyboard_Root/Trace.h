@@ -59,5 +59,5 @@ Environment:
 // Driver specific #defines
 //
 #if UMDF_VERSION_MAJOR == 2 && UMDF_VERSION_MINOR == 0
-    #define MYDRIVER_TRACING_ID      L"Microsoft\\UMDF2.0\\TheSpikeyDriver V1.0"
+    #define MYDRIVER_TRACING_ID      L"Microsoft\\UMDF2.0\\SCMFD_Keyboard_Root V1.0"
 #endif

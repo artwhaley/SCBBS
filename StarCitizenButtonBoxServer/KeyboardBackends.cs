@@ -3,7 +3,7 @@ namespace StarCitizenButtonBoxServer;
 public enum KeyboardBackendType
 {
     Interception,
-    Spikey
+    SCMFDKeyboard
 }
 
 public interface IKeyboardInputBackend : IDisposable
@@ -20,8 +20,8 @@ public sealed class KeyboardBackendRouter : IDisposable
 
     public KeyboardBackendType? SelectedBackend { get; private set; }
     public bool HasInterception => _backends.ContainsKey(KeyboardBackendType.Interception);
-    public bool HasSpikey => _backends.ContainsKey(KeyboardBackendType.Spikey);
-    public bool CanSwitch => HasInterception && HasSpikey;
+    public bool HasSCMFDKeyboard => _backends.ContainsKey(KeyboardBackendType.SCMFDKeyboard);
+    public bool CanSwitch => HasInterception && HasSCMFDKeyboard;
 
     public event EventHandler? BackendSelectionChanged;
 
@@ -40,8 +40,8 @@ public sealed class KeyboardBackendRouter : IDisposable
     {
         if (HasInterception) {
             SelectedBackend = KeyboardBackendType.Interception;
-        } else if (HasSpikey) {
-            SelectedBackend = KeyboardBackendType.Spikey;
+        } else if (HasSCMFDKeyboard) {
+            SelectedBackend = KeyboardBackendType.SCMFDKeyboard;
         } else {
             SelectedBackend = null;
         }

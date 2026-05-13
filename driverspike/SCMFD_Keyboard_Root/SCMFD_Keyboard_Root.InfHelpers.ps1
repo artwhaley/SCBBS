@@ -1,7 +1,7 @@
-# Shared by fix_Inf_DriverVer.ps1 (MSBuild) and Redeploy-TheSpikeyDriver.ps1.
+# Shared by fix_Inf_DriverVer.ps1 (MSBuild) and Redeploy-SCMFD_Keyboard_Root.ps1.
 # Normalizes stamped INFs for packaging consistency (DriverVer spacing only).
 
-function Get-TheSpikeyDriverInfCandidates {
+function Get-SCMFD_Keyboard_RootInfCandidates {
     param(
         [Parameter(Mandatory)][string]$OutDir,
         [Parameter(Mandatory)][string]$ProjectDir,
@@ -17,41 +17,41 @@ function Get-TheSpikeyDriverInfCandidates {
     }
 
     foreach ($p in @(
-            (Join-Path $OutDir 'TheSpikeyDriver.inf'),
-            (Join-Path $OutDir 'TheSpikeyDriver\TheSpikeyDriver.inf')
+            (Join-Path $OutDir 'SCMFD_Keyboard_Root.inf'),
+            (Join-Path $OutDir 'SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.inf')
         )) { & $tryAdd $p }
 
     $parent = Split-Path -Parent $OutDir
     if ($parent) {
         foreach ($p in @(
-                (Join-Path $parent 'TheSpikeyDriver\TheSpikeyDriver.inf'),
-                (Join-Path $parent 'TheSpikeyDriver.inf')
+                (Join-Path $parent 'SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.inf'),
+                (Join-Path $parent 'SCMFD_Keyboard_Root.inf')
             )) { & $tryAdd $p }
     }
 
     foreach ($p in @(
-            (Join-Path $ProjectDir "x64\$Configuration\TheSpikeyDriver.inf"),
-            (Join-Path $ProjectDir "x64\$Configuration\TheSpikeyDriver\TheSpikeyDriver.inf")
+            (Join-Path $ProjectDir "x64\$Configuration\SCMFD_Keyboard_Root.inf"),
+            (Join-Path $ProjectDir "x64\$Configuration\SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.inf")
         )) { & $tryAdd $p }
 
     $slnParent = Split-Path -Parent $ProjectDir
     if ($slnParent) {
         foreach ($p in @(
-                (Join-Path $slnParent "x64\$Configuration\TheSpikeyDriver\TheSpikeyDriver.inf"),
-                (Join-Path $slnParent "x64\$Configuration\TheSpikeyDriver.inf")
+                (Join-Path $slnParent "x64\$Configuration\SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.inf"),
+                (Join-Path $slnParent "x64\$Configuration\SCMFD_Keyboard_Root.inf")
             )) { & $tryAdd $p }
     }
 
     $set | Sort-Object
 }
 
-function Normalize-TheSpikeyDriverInfText {
+function Normalize-SCMFD_Keyboard_RootInfText {
     param([Parameter(Mandatory)][string]$Text)
     $t = [regex]::Replace($Text, 'DriverVer\s*=\s*', 'DriverVer=')
     $t
 }
 
-function Repair-TheSpikeyDriverInfFile {
+function Repair-SCMFD_Keyboard_RootInfFile {
     param([Parameter(Mandatory)][string]$LiteralPath)
     if (-not (Test-Path -LiteralPath $LiteralPath -PathType Leaf)) { return $false }
     $bytes = [IO.File]::ReadAllBytes($LiteralPath)
@@ -74,21 +74,21 @@ function Repair-TheSpikeyDriverInfFile {
         $enc = [Text.Encoding]::UTF8
     }
 
-    $t2 = Normalize-TheSpikeyDriverInfText $t
+    $t2 = Normalize-SCMFD_Keyboard_RootInfText $t
     if ($t2 -eq $t) { return $false }
     [IO.File]::WriteAllText($LiteralPath, $t2, $enc)
     return $true
 }
 
-function Repair-AllTheSpikeyDriverInfs {
+function Repair-AllSCMFD_Keyboard_RootInfs {
     param(
         [Parameter(Mandatory)][string]$OutDir,
         [Parameter(Mandatory)][string]$ProjectDir,
         [Parameter()][string]$Configuration = 'Debug'
     )
     $changed = @()
-    foreach ($p in (Get-TheSpikeyDriverInfCandidates -OutDir $OutDir -ProjectDir $ProjectDir -Configuration $Configuration)) {
-        if (Repair-TheSpikeyDriverInfFile -LiteralPath $p) { $changed += $p }
+    foreach ($p in (Get-SCMFD_Keyboard_RootInfCandidates -OutDir $OutDir -ProjectDir $ProjectDir -Configuration $Configuration)) {
+        if (Repair-SCMFD_Keyboard_RootInfFile -LiteralPath $p) { $changed += $p }
     }
     return @($changed)
 }

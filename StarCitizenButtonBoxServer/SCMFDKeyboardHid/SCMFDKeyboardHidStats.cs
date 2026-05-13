@@ -1,6 +1,6 @@
-namespace StarCitizenButtonBoxServer.SpikeyHid;
+namespace StarCitizenButtonBoxServer.SCMFDKeyboardHid;
 
-internal sealed class SpikeyHidStats
+internal sealed class SCMFDKeyboardHidStats
 {
     public uint Sequence { get; init; }
     public uint KeyDownCount { get; init; }

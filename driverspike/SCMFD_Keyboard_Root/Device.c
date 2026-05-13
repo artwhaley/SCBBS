@@ -3,14 +3,14 @@
 #include "driver.h"
 #include "device.tmh"
 
-static volatile LONG g_TheSpikeyDriverDeviceOrdinal;
+static volatile LONG g_SCMFD_Keyboard_RootDeviceOrdinal;
 
-EVT_WDF_DEVICE_FILE_CREATE TheSpikeyDriverEvtDeviceFileCreate;
-EVT_WDF_FILE_CLOSE TheSpikeyDriverEvtFileClose;
-EVT_WDF_FILE_CLEANUP TheSpikeyDriverEvtFileCleanup;
+EVT_WDF_DEVICE_FILE_CREATE SCMFD_Keyboard_RootEvtDeviceFileCreate;
+EVT_WDF_FILE_CLOSE SCMFD_Keyboard_RootEvtFileClose;
+EVT_WDF_FILE_CLEANUP SCMFD_Keyboard_RootEvtFileCleanup;
 
 VOID
-TheSpikeyDriverEvtDeviceFileCreate(
+SCMFD_Keyboard_RootEvtDeviceFileCreate(
     _In_ WDFDEVICE Device,
     _In_ WDFREQUEST Request,
     _In_ WDFFILEOBJECT FileObject
@@ -49,7 +49,7 @@ TheSpikeyDriverEvtDeviceFileCreate(
 }
 
 VOID
-TheSpikeyDriverEvtFileCleanup(
+SCMFD_Keyboard_RootEvtFileCleanup(
     _In_ WDFFILEOBJECT FileObject
     )
 {
@@ -64,7 +64,7 @@ TheSpikeyDriverEvtFileCleanup(
 }
 
 VOID
-TheSpikeyDriverEvtFileClose(
+SCMFD_Keyboard_RootEvtFileClose(
     _In_ WDFFILEOBJECT FileObject
     )
 {
@@ -79,7 +79,7 @@ TheSpikeyDriverEvtFileClose(
 }
 
 NTSTATUS
-TheSpikeyDriverCreateDevice(
+SCMFD_Keyboard_RootCreateDevice(
     _Inout_ PWDFDEVICE_INIT DeviceInit
     )
 {
@@ -94,9 +94,9 @@ TheSpikeyDriverCreateDevice(
     WdfFdoInitSetFilter(DeviceInit);
     WDF_FILEOBJECT_CONFIG_INIT(
         &fileConfig,
-        TheSpikeyDriverEvtDeviceFileCreate,
-        TheSpikeyDriverEvtFileClose,
-        TheSpikeyDriverEvtFileCleanup);
+        SCMFD_Keyboard_RootEvtDeviceFileCreate,
+        SCMFD_Keyboard_RootEvtFileClose,
+        SCMFD_Keyboard_RootEvtFileCleanup);
     WDF_OBJECT_ATTRIBUTES_INIT(&fileObjectAttributes);
     WdfDeviceInitSetFileObjectConfig(DeviceInit, &fileConfig, &fileObjectAttributes);
 
@@ -107,7 +107,7 @@ TheSpikeyDriverCreateDevice(
         TraceEvents(TRACE_LEVEL_ERROR, TRACE_DEVICE, "WdfDeviceCreate %!STATUS!", status);
         return status;
     }
-    status = WdfDeviceCreateDeviceInterface(device, &GUID_DEVINTERFACE_THESPIKEYDRIVER_CONTROL, NULL);
+    status = WdfDeviceCreateDeviceInterface(device, &GUID_DEVINTERFACE_SCMFD_KEYBOARD_ROOT_CONTROL, NULL);
     if (!NT_SUCCESS(status)) {
         TraceEvents(TRACE_LEVEL_ERROR, TRACE_DEVICE, "WdfDeviceCreateDeviceInterface %!STATUS!", status);
         return status;
@@ -120,7 +120,7 @@ TheSpikeyDriverCreateDevice(
     deviceContext->Device = device;
     deviceContext->DeviceData = 0;
     deviceContext->ReadReportDescFromRegistry = FALSE;
-    deviceContext->DebugInstanceOrdinal = (ULONG)InterlockedIncrement(&g_TheSpikeyDriverDeviceOrdinal);
+    deviceContext->DebugInstanceOrdinal = (ULONG)InterlockedIncrement(&g_SCMFD_Keyboard_RootDeviceOrdinal);
     deviceContext->LastForwardedReadRequest = NULL;
     deviceContext->LastForwardedReadIoctl = 0;
     deviceContext->Sequence = 0;
@@ -139,12 +139,12 @@ TheSpikeyDriverCreateDevice(
     RtlZeroMemory(deviceContext->CurrentKeycodes, sizeof(deviceContext->CurrentKeycodes));
     RtlZeroMemory(deviceContext->ModifierHoldDeadline, sizeof(deviceContext->ModifierHoldDeadline));
     RtlZeroMemory(deviceContext->KeyHoldDeadline, sizeof(deviceContext->KeyHoldDeadline));
-    deviceContext->LastCommandStatus = THESPIKEYDRIVER_COMMAND_STATUS_OK;
+    deviceContext->LastCommandStatus = SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK;
     deviceContext->LastCommandUsage = 0;
     deviceContext->KeyboardStateDirty = TRUE;
     if (deviceContext->DebugInstanceOrdinal > 1) {
         TraceEvents(TRACE_LEVEL_ERROR, TRACE_DEVICE,
-            "More than one TheSpikeyDriver FDO in this WUDF host (ordinal=%u). "
+            "More than one SCMFD_Keyboard_Root FDO in this WUDF host (ordinal=%u). "
             "Each has its own kbdhid child; duplicates often yield no visible typing — remove extra PnP nodes.",
             deviceContext->DebugInstanceOrdinal);
     }
@@ -156,12 +156,12 @@ TheSpikeyDriverCreateDevice(
     hidAttributes->ProductID = HIDMINI_PID;
     hidAttributes->VersionNumber = HIDMINI_VERSION;
 
-    status = TheSpikeyDriverQueueInitialize(device);
+    status = SCMFD_Keyboard_RootQueueInitialize(device);
     if (!NT_SUCCESS(status)) {
         return status;
     }
 
-    status = TheSpikeyDriverManualQueueInitialize(device, &deviceContext->ManualQueue);
+    status = SCMFD_Keyboard_RootManualQueueInitialize(device, &deviceContext->ManualQueue);
     if (!NT_SUCCESS(status)) {
         return status;
     }
@@ -172,7 +172,7 @@ TheSpikeyDriverCreateDevice(
     deviceContext->ReportDescriptor = G_DefaultReportDescriptor;
 
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DEVICE,
-        "Device created instanceOrdinal=%u VID=0x%x PID=0x%x (match to Get-PnpDevice *Spikey* rows)",
+        "Device created instanceOrdinal=%u VID=0x%x PID=0x%x (match to Get-PnpDevice *SCMFD Keyboard* rows)",
         deviceContext->DebugInstanceOrdinal, HIDMINI_VID, HIDMINI_PID);
     return STATUS_SUCCESS;
 }

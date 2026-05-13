@@ -68,10 +68,10 @@ Return Value:
     // the framework driver object is deleted during driver unload.
     //
     WDF_OBJECT_ATTRIBUTES_INIT(&attributes);
-    attributes.EvtCleanupCallback = TheSpikeyDriverEvtDriverContextCleanup;
+    attributes.EvtCleanupCallback = SCMFD_Keyboard_RootEvtDriverContextCleanup;
 
     WDF_DRIVER_CONFIG_INIT(&config,
-                           TheSpikeyDriverEvtDeviceAdd
+                           SCMFD_Keyboard_RootEvtDeviceAdd
                            );
 
     status = WdfDriverCreate(DriverObject,
@@ -97,7 +97,7 @@ Return Value:
 }
 
 NTSTATUS
-TheSpikeyDriverEvtDeviceAdd(
+SCMFD_Keyboard_RootEvtDeviceAdd(
     _In_    WDFDRIVER       Driver,
     _Inout_ PWDFDEVICE_INIT DeviceInit
     )
@@ -126,7 +126,7 @@ Return Value:
 
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, "%!FUNC! Entry");
 
-    status = TheSpikeyDriverCreateDevice(DeviceInit);
+    status = SCMFD_Keyboard_RootCreateDevice(DeviceInit);
 
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_DRIVER, "%!FUNC! Exit");
 
@@ -134,7 +134,7 @@ Return Value:
 }
 
 VOID
-TheSpikeyDriverEvtDriverContextCleanup(
+SCMFD_Keyboard_RootEvtDriverContextCleanup(
     _In_ WDFOBJECT DriverObject
     )
 /*++

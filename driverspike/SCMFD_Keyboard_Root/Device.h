@@ -49,7 +49,7 @@ typedef struct _DEVICE_CONTEXT {
 
 WDF_DECLARE_CONTEXT_TYPE_WITH_NAME(DEVICE_CONTEXT, DeviceGetContext)
 
-NTSTATUS TheSpikeyDriverCreateDevice(_Inout_ PWDFDEVICE_INIT DeviceInit);
+NTSTATUS SCMFD_Keyboard_RootCreateDevice(_Inout_ PWDFDEVICE_INIT DeviceInit);
 
 EXTERN_C_END
 

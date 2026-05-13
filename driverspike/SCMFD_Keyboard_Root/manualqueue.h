@@ -18,13 +18,13 @@ typedef struct _MANUAL_QUEUE_CONTEXT {
 WDF_DECLARE_CONTEXT_TYPE_WITH_NAME(MANUAL_QUEUE_CONTEXT, GetManualQueueContext)
 
 NTSTATUS
-TheSpikeyDriverManualQueueInitialize(
+SCMFD_Keyboard_RootManualQueueInitialize(
     _In_ WDFDEVICE Device,
     _Out_ WDFQUEUE *Queue
     );
 
-EVT_WDF_TIMER TheSpikeyDriverEvtTimerFunc;
-VOID TheSpikeyDriverKickManualQueue(_In_ PDEVICE_CONTEXT DeviceContext, _In_ ULONG DelayMs);
+EVT_WDF_TIMER SCMFD_Keyboard_RootEvtTimerFunc;
+VOID SCMFD_Keyboard_RootKickManualQueue(_In_ PDEVICE_CONTEXT DeviceContext, _In_ ULONG DelayMs);
 
 EXTERN_C_END
 

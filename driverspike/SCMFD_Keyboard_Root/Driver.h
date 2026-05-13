@@ -30,7 +30,7 @@ EXTERN_C_START
 //
 
 DRIVER_INITIALIZE DriverEntry;
-EVT_WDF_DRIVER_DEVICE_ADD TheSpikeyDriverEvtDeviceAdd;
-EVT_WDF_OBJECT_CONTEXT_CLEANUP TheSpikeyDriverEvtDriverContextCleanup;
+EVT_WDF_DRIVER_DEVICE_ADD SCMFD_Keyboard_RootEvtDeviceAdd;
+EVT_WDF_OBJECT_CONTEXT_CLEANUP SCMFD_Keyboard_RootEvtDriverContextCleanup;
 
 EXTERN_C_END

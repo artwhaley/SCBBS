@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -13,8 +13,8 @@
   <ItemGroup>
     <None Include="ReadMe.txt" />
     <None Include="fix_Inf_DriverVer.ps1" />
-    <None Include="TheSpikeyDriver.InfHelpers.ps1" />
-    <None Include="Redeploy-TheSpikeyDriver.ps1" />
+    <None Include="SCMFD_Keyboard_Root.InfHelpers.ps1" />
+    <None Include="Redeploy-SCMFD_Keyboard_Root.ps1" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.c" />
@@ -34,7 +34,7 @@
     <ClInclude Include="Trace.h" />
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="TheSpikeyDriver.inf" />
+    <Inf Include="SCMFD_Keyboard_Root.inf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}</ProjectGuid>
@@ -43,14 +43,14 @@
     <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
     <Configuration>Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">x64</Platform>
-    <RootNamespace>TheSpikeyDriver</RootNamespace>
+    <RootNamespace>SCMFD_Keyboard_Root</RootNamespace>
     <!-- Do NOT set WindowsTargetPlatformVersion to "10.0" alone: Microsoft.Cpp.WDK.props sets
-         WDKBuildFolder from it, and build\10.0\WindowsDriver.Default.props does not exist — WDK
+         WDKBuildFolder from it, and build\10.0\WindowsDriver.Default.props does not exist � WDK
          imports are skipped, DDK_INC_PATH stays empty, and wdf.h is not found. Leave unset here
          so WDK + VS pick a real kit (e.g. 10.0.26100.0), or pin an installed full version. -->
     <!-- MSBuild InfVerif task can fail to load x86 InfVerif.dll from some hosts; run infverif.exe manually before install. -->
     <SkipPackageVerification>true</SkipPackageVerification>
-    <!-- Produce TheSpikeyDriver.cat so pnputil accepts the package (CatalogFile= in INF). Test-sign runs after Inf2Cat. -->
+    <!-- Produce SCMFD_Keyboard_Root.cat so pnputil accepts the package (CatalogFile= in INF). Test-sign runs after Inf2Cat. -->
     <EnableInf2cat>true</EnableInf2cat>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -77,6 +77,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>$(MSBuildThisFileDirectory)..\x64\$(Configuration)\</OutDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerFlavor>DbgengRemoteDebugger</DebuggerFlavor>
   </PropertyGroup>

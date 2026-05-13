@@ -92,16 +92,16 @@ public partial class App : System.Windows.Application
         }
 
         try {
-            InputRouter.Register(new SpikeyKeyboardBackend(line =>
+            InputRouter.Register(new SCMFDKeyboardBackend(line =>
                 Dispatcher.BeginInvoke(() => ServerDashboardWindow.TryAppendLog(line))));
         } catch (Exception ex) {
-            ServerDashboardWindow.TryAppendLog($"[Input] Spikey unavailable: {ex.Message}");
+            ServerDashboardWindow.TryAppendLog($"[Input] SCMFD Keyboard unavailable: {ex.Message}");
         }
 
         InputRouter.InitializeDefaultSelection();
         if (InputRouter.SelectedBackend is null) {
             MessageBox.Show(
-                "No keyboard backend is available.\n\nInstall Interception and/or Spikey driver, then restart.",
+                "No keyboard backend is available.\n\nInstall Interception and/or SCMFD Keyboard driver, then restart.",
                 "Input backend error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         Media = new MediaHandler();

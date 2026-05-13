@@ -1,10 +1,10 @@
 #requires -version 5.1
 <#
 .SYNOPSIS
-  Rebuild the driverspike solution (MSBuild), then remove old installs and stage + install TheSpikeyDriver.
+  Rebuild the SCMFD keyboard driver and test client, then remove old installs and stage + install SCMFD_Keyboard_Root.
 
 .DESCRIPTION
-  Finds driverspike.sln next to this project and runs MSBuild /t:Rebuild with full paths (VS2022 only).
+  Finds driverspike.sln next to this project, then builds the driver and test-client project files directly with full paths (VS2022 only).
   Does not require Administrator for the build. Deploy steps still require elevation.
 
 .PARAMETER Configuration
@@ -37,7 +37,7 @@ param(
 )
 
 $ProjectDir = $PSScriptRoot
-. (Join-Path $ProjectDir 'TheSpikeyDriver.InfHelpers.ps1')
+. (Join-Path $ProjectDir 'SCMFD_Keyboard_Root.InfHelpers.ps1')
 
 function Resolve-DriverspikeSolutionPath {
     param(
@@ -132,7 +132,7 @@ function Resolve-VisualStudioVersionForWdk {
         } catch {}
         return $x
     }
-    $fromEnv = $env:WDK_DRIVERKIT_TASKS_VS_VERSION, $env:THESPIKEYDRIVER_WDK_TASKS_VS_VERSION | Where-Object { $_ } | Select-Object -First 1
+    $fromEnv = $env:WDK_DRIVERKIT_TASKS_VS_VERSION, $env:SCMFD_KEYBOARD_ROOT_WDK_TASKS_VS_VERSION | Where-Object { $_ } | Select-Object -First 1
     if ($fromEnv) {
         $e = $fromEnv.Trim()
         try {
@@ -157,25 +157,36 @@ function Invoke-DriverspikeRebuild {
         [Parameter(Mandatory)][string]$Configuration,
         [string]$VisualStudioVersionForWdk
     )
+    $solutionDir = Split-Path -Parent $SolutionFile
+    $projects = @(
+        (Join-Path $solutionDir 'SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.vcxproj'),
+        (Join-Path $solutionDir 'TestEnumeratorAndClient\TestEnumeratorAndClient.vcxproj')
+    )
     $vsProp = @()
     if ($VisualStudioVersionForWdk) {
         $vsProp = @("/p:VisualStudioVersion=$VisualStudioVersionForWdk")
         Write-Host "WDK DriverKit tasks: using /p:VisualStudioVersion=$VisualStudioVersionForWdk (Microsoft.DriverKit.Build.Tasks.$VisualStudioVersionForWdk.dll)"
     }
     Write-Host "MSBuild: $MsBuildExe"
-    Write-Host "Solution: $SolutionFile"
-    Write-Host "Command: $MsBuildExe `"$SolutionFile`" /t:Rebuild /p:Configuration=$Configuration /p:Platform=x64 /m /v:minimal /nr:true $($vsProp -join ' ')"
-    $old = $ErrorActionPreference
-    $ErrorActionPreference = 'Continue'
-    try {
-        & $MsBuildExe $SolutionFile /t:Rebuild /p:Configuration=$Configuration /p:Platform=x64 /m /v:minimal /nr:true @vsProp
-    }
-    finally {
-        $ErrorActionPreference = $old
-    }
-    if ($LASTEXITCODE -ne 0) {
-        Write-Error "MSBuild Rebuild failed (exit code $LASTEXITCODE). Fix errors above, or open the log from Visual Studio."
-        exit $LASTEXITCODE
+    foreach ($project in $projects) {
+        if (-not (Test-Path -LiteralPath $project -PathType Leaf)) {
+            Write-Error "Project not found: $project"
+            exit 1
+        }
+        Write-Host "Project: $project"
+        Write-Host "Command: $MsBuildExe `"$project`" /t:Rebuild /p:Configuration=$Configuration /p:Platform=x64 /m /v:minimal /nr:true $($vsProp -join ' ')"
+        $old = $ErrorActionPreference
+        $ErrorActionPreference = 'Continue'
+        try {
+            & $MsBuildExe $project /t:Rebuild /p:Configuration=$Configuration /p:Platform=x64 /m /v:minimal /nr:true @vsProp
+        }
+        finally {
+            $ErrorActionPreference = $old
+        }
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "MSBuild Rebuild failed for $project (exit code $LASTEXITCODE). Fix errors above, or open the log from Visual Studio."
+            exit $LASTEXITCODE
+        }
     }
 }
 
@@ -210,13 +221,13 @@ function Invoke-Devcon {
     }
 }
 
-function Remove-TheSpikeyDriverPnPDevices {
+function Remove-SCMFD_Keyboard_RootPnPDevices {
     param([string]$DevconPath)
     if (-not $DevconPath) { Write-Warning 'devcon.exe not found; skipping hardware remove (remove phantom devices manually if needed).'; return }
     foreach ($args in @(
-            @('remove', 'root\TheSpikeyDriver'),
-            @('remove', '@root\TheSpikeyDriver'),
-            @('remove', 'ROOT\TheSpikeyDriver')
+            @('remove', 'root\SCMFD_Keyboard_Root'),
+            @('remove', '@root\SCMFD_Keyboard_Root'),
+            @('remove', 'ROOT\SCMFD_Keyboard_Root')
         )) {
         try {
             Invoke-Devcon -DevconPath $DevconPath -Arguments $args
@@ -225,7 +236,7 @@ function Remove-TheSpikeyDriverPnPDevices {
     }
 }
 
-function Remove-TheSpikeyDriverFromDriverStore {
+function Remove-SCMFD_Keyboard_RootFromDriverStore {
     $lines = @()
     try {
         $lines = @(pnputil.exe /enum-drivers 2>&1)
@@ -254,9 +265,9 @@ function Remove-TheSpikeyDriverFromDriverStore {
         $packages.Add([PSCustomObject]@{ OEM = $pub; OriginalName = $orig; Provider = $prov })
     }
     $toDelete = $packages | Where-Object {
-        ($null -ne $_.OriginalName -and $_.OriginalName -match '(?i)^thespikeydriver\.inf$') -or
+        ($null -ne $_.OriginalName -and $_.OriginalName -match '(?i)^scmfd_keyboard_root\.inf$') -or
         ($null -ne $_.OriginalName -and $_.OriginalName -match '(?i)^driver\.inf$' -and $_.Provider -match '(?i)SpikeTest') -or
-        ($null -ne $_.Provider -and $_.Provider -match '(?i)thespikeydriver')
+        ($null -ne $_.Provider -and $_.Provider -match '(?i)scmfd_keyboard_root')
     }
     foreach ($oem in (($toDelete | Select-Object -ExpandProperty OEM -Unique) | Sort-Object {
                 if ($_ -match 'oem(\d+)\.inf') { [int]$Matches[1] } else { 0 }
@@ -269,26 +280,26 @@ function Remove-TheSpikeyDriverFromDriverStore {
     }
 }
 
-function Resolve-TheSpikeyDriverPackage {
+function Resolve-SCMFD_Keyboard_RootPackage {
     param(
         [Parameter(Mandatory)][string]$ProjectDir,
         [Parameter(Mandatory)][string]$Configuration
     )
     $sln = Split-Path -Parent $ProjectDir
     $outDirs = @(
-        (Join-Path $sln "x64\$Configuration\TheSpikeyDriver"),
+        (Join-Path $sln "x64\$Configuration\SCMFD_Keyboard_Root"),
         (Join-Path $sln "x64\$Configuration"),
         (Join-Path $ProjectDir "x64\$Configuration"),
-        (Join-Path $ProjectDir "x64\$Configuration\TheSpikeyDriver")
+        (Join-Path $ProjectDir "x64\$Configuration\SCMFD_Keyboard_Root")
     ) | Where-Object { Test-Path -LiteralPath $_ }
 
     $packages = @{}
     foreach ($od in $outDirs) {
-        foreach ($inf in (Get-TheSpikeyDriverInfCandidates -OutDir $od -ProjectDir $ProjectDir -Configuration $Configuration)) {
-            if ((Split-Path -Leaf $inf) -ne 'TheSpikeyDriver.inf') { continue }
+        foreach ($inf in (Get-SCMFD_Keyboard_RootInfCandidates -OutDir $od -ProjectDir $ProjectDir -Configuration $Configuration)) {
+            if ((Split-Path -Leaf $inf) -ne 'SCMFD_Keyboard_Root.inf') { continue }
             $d = [IO.Path]::GetFullPath((Split-Path -Parent $inf))
-            $cat = Join-Path $d 'TheSpikeyDriver.cat'
-            $dll = Join-Path $d 'TheSpikeyDriver.dll'
+            $cat = Join-Path $d 'SCMFD_Keyboard_Root.cat'
+            $dll = Join-Path $d 'SCMFD_Keyboard_Root.dll'
             if (-not (Test-Path -LiteralPath $cat)) { continue }
             if (-not (Test-Path -LiteralPath $dll)) { continue }
             $packages[$d] = [IO.Path]::GetFullPath($inf)
@@ -297,7 +308,7 @@ function Resolve-TheSpikeyDriverPackage {
 
     if ($packages.Count -eq 0) { return $null }
 
-    $preferred = [IO.Path]::GetFullPath((Join-Path $sln "x64\$Configuration\TheSpikeyDriver"))
+    $preferred = [IO.Path]::GetFullPath((Join-Path $sln "x64\$Configuration\SCMFD_Keyboard_Root"))
     if ($packages.ContainsKey($preferred)) {
         return @{ Directory = $preferred; Inf = $packages[$preferred] }
     }
@@ -348,13 +359,13 @@ else {
 }
 
 # --- 2) Package + deploy ---
-$pkg = Resolve-TheSpikeyDriverPackage -ProjectDir $ProjectDir -Configuration $Configuration
+$pkg = Resolve-SCMFD_Keyboard_RootPackage -ProjectDir $ProjectDir -Configuration $Configuration
 if (-not $pkg) {
     Write-Error @"
-Could not find a complete package (TheSpikeyDriver.inf + .cat + .dll).
+Could not find a complete package (SCMFD_Keyboard_Root.inf + .cat + .dll).
 $(if (-not $SkipBuild) { 'MSBuild reported success but outputs are missing; check project Output Directory.' } else { "Build the solution first, or omit -SkipBuild." })
 Checked under:
-  $([IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $ProjectDir) "x64\$Configuration\TheSpikeyDriver")))
+  $([IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $ProjectDir) "x64\$Configuration\SCMFD_Keyboard_Root")))
   $([IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $ProjectDir) "x64\$Configuration")))
   $([IO.Path]::GetFullPath((Join-Path $ProjectDir "x64\$Configuration")))
 "@
@@ -366,7 +377,7 @@ $dir = $pkg.Directory
 Write-Host "Package directory: $dir"
 Write-Host "INF:             $inf"
 
-if (-not $PSCmdlet.ShouldProcess($inf, 'Remove old devices, refresh driver store, install TheSpikeyDriver')) {
+if (-not $PSCmdlet.ShouldProcess($inf, 'Remove old devices, refresh driver store, install SCMFD_Keyboard_Root')) {
     exit 0
 }
 
@@ -380,15 +391,15 @@ if (-not $devcon) {
     Write-Warning 'devcon.exe not found under Windows Kits\10\Tools. Install the WDK tools or Windows SDK with devcon.'
 }
 
-Remove-TheSpikeyDriverPnPDevices -DevconPath $devcon
-Remove-TheSpikeyDriverFromDriverStore
+Remove-SCMFD_Keyboard_RootPnPDevices -DevconPath $devcon
+Remove-SCMFD_Keyboard_RootFromDriverStore
 
 Write-Host "pnputil /add-driver `"$inf`" /install"
 & pnputil.exe /add-driver $inf /install 2>&1 | ForEach-Object { Write-Host $_ }
 
 if ($devcon) {
-    Write-Host "devcon install `"$inf`" root\TheSpikeyDriver"
-    Invoke-Devcon -DevconPath $devcon -Arguments @('install', $inf, 'root\TheSpikeyDriver')
+    Write-Host "devcon install `"$inf`" root\SCMFD_Keyboard_Root"
+    Invoke-Devcon -DevconPath $devcon -Arguments @('install', $inf, 'root\SCMFD_Keyboard_Root')
 }
 
-Write-Host 'Redeploy finished. If the driver still fails, check %windir%\INF\setupapi.dev.log for the last TheSpikeyDriver section.'
+Write-Host 'Redeploy finished. If the driver still fails, check %windir%\INF\setupapi.dev.log for the last SCMFD_Keyboard_Root section.'

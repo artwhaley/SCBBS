@@ -7,10 +7,10 @@ param(
     [string] $Configuration = 'Debug'
 )
 $here = $PSScriptRoot
-. (Join-Path $here 'TheSpikeyDriver.InfHelpers.ps1')
+. (Join-Path $here 'SCMFD_Keyboard_Root.InfHelpers.ps1')
 if (-not $OutDir) { $OutDir = (Get-Location).Path }
 if (-not $ProjectDir) { $ProjectDir = $here }
-$changed = Repair-AllTheSpikeyDriverInfs -OutDir $OutDir -ProjectDir $ProjectDir -Configuration $Configuration
+$changed = Repair-AllSCMFD_Keyboard_RootInfs -OutDir $OutDir -ProjectDir $ProjectDir -Configuration $Configuration
 foreach ($p in $changed) {
     Write-Host "INF normalized: $p"
 }

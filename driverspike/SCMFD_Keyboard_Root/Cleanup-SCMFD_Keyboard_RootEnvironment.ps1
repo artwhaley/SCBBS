@@ -1,13 +1,13 @@
 #requires -version 5.1
 <#
 .SYNOPSIS
-  Destructive cleanup: remove Spikey root-enumerated devices and matching driver-store packages.
+  Destructive cleanup: remove SCMFD Keyboard root-enumerated devices and matching driver-store packages.
 
 .DESCRIPTION
   Run in an elevated PowerShell. Targets the same scope as the Phase 2 audit:
-  - PnP devices: FriendlyName like *Spikey* under ROOT\*
-  - pnputil packages: TheSpikeyDriver.inf (any case), OR driver.inf from provider SpikeTest,
-    OR any package whose provider matches TheSpikeyDriver (covers current + stale naming).
+  - PnP devices: FriendlyName like *SCMFD Keyboard* under ROOT\*
+  - pnputil packages: SCMFD_Keyboard_Root.inf (any case), OR driver.inf from provider SpikeTest,
+    OR any package whose provider matches SCMFD_Keyboard_Root (covers current + stale naming).
 
   Order: remove devices first, then delete driver packages (newest OEM first).
 
@@ -15,10 +15,10 @@
   List actions only; does not remove devices or delete packages.
 
 .EXAMPLE
-  .\Cleanup-TheSpikeyDriverEnvironment.ps1
+  .\Cleanup-SCMFD_Keyboard_RootEnvironment.ps1
 
 .EXAMPLE
-  .\Cleanup-TheSpikeyDriverEnvironment.ps1 -WhatIf
+  .\Cleanup-SCMFD_Keyboard_RootEnvironment.ps1 -WhatIf
 #>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param()
@@ -58,9 +58,9 @@ function Get-PnputilDriverPackages {
 function Get-CleanupTargetPackages {
     $packages = @(Get-PnputilDriverPackages)
     $packages | Where-Object {
-        ($null -ne $_.OriginalName -and $_.OriginalName -match '(?i)^thespikeydriver\.inf$') -or
+        ($null -ne $_.OriginalName -and $_.OriginalName -match '(?i)^scmfd_keyboard_root\.inf$') -or
         ($null -ne $_.OriginalName -and $_.OriginalName -match '(?i)^driver\.inf$' -and $_.Provider -match '(?i)SpikeTest') -or
-        ($null -ne $_.Provider -and $_.Provider -match '(?i)thespikeydriver')
+        ($null -ne $_.Provider -and $_.Provider -match '(?i)scmfd_keyboard_root')
     }
 }
 
@@ -110,9 +110,9 @@ if ($destructive -and -not (Test-Administrator)) {
     exit 1
 }
 
-Write-Host '=== Devices to remove (ROOT\* , FriendlyName *Spikey*) ===' -ForegroundColor Cyan
+Write-Host '=== Devices to remove (ROOT\* , FriendlyName *SCMFD Keyboard*) ===' -ForegroundColor Cyan
 $devices = @(Get-PnpDevice -ErrorAction SilentlyContinue |
-    Where-Object { $_.FriendlyName -like '*Spikey*' -and $_.InstanceId -like 'ROOT\*' })
+    Where-Object { $_.FriendlyName -like '*SCMFD Keyboard*' -and $_.InstanceId -like 'ROOT\*' })
 if ($devices.Count -eq 0) {
     Write-Host '(none found)'
 }
@@ -156,4 +156,4 @@ foreach ($p in $pkgs) {
     }
 }
 
-Write-Host 'Cleanup finished. Re-run Redeploy-TheSpikeyDriver.ps1 to stage a fresh package and install root\TheSpikeyDriver.' -ForegroundColor Green
+Write-Host 'Cleanup finished. Re-run Redeploy-SCMFD_Keyboard_Root.ps1 to stage a fresh package and install root\SCMFD_Keyboard_Root.' -ForegroundColor Green

@@ -149,7 +149,7 @@ public partial class ServerDashboardWindow : FluentWindow
         if (App.InputRouter == null) {
             return;
         }
-        var desired = ChkUseSpikey.IsChecked == true ? KeyboardBackendType.Spikey : KeyboardBackendType.Interception;
+        var desired = ChkUseSCMFDKeyboard.IsChecked == true ? KeyboardBackendType.SCMFDKeyboard : KeyboardBackendType.Interception;
         if (!App.InputRouter.TrySelect(desired, out var reason)) {
             TryAppendLog($"[Input] {reason}");
         } else {
@@ -161,21 +161,21 @@ public partial class ServerDashboardWindow : FluentWindow
     void RefreshBackendControls()
     {
         if (App.InputRouter == null) {
-            ChkUseSpikey.IsEnabled = false;
+            ChkUseSCMFDKeyboard.IsEnabled = false;
             TxtBackendStatus.Text = "Input router not initialized.";
             return;
         }
 
         _suppressBackendToggleEvent = true;
         try {
-            ChkUseSpikey.IsEnabled = App.InputRouter.CanSwitch;
-            ChkUseSpikey.IsChecked = App.InputRouter.SelectedBackend == KeyboardBackendType.Spikey;
+            ChkUseSCMFDKeyboard.IsEnabled = App.InputRouter.CanSwitch;
+            ChkUseSCMFDKeyboard.IsChecked = App.InputRouter.SelectedBackend == KeyboardBackendType.SCMFDKeyboard;
         } finally {
             _suppressBackendToggleEvent = false;
         }
 
         var selected = App.InputRouter.SelectedBackend?.ToString() ?? "None";
-        var availability = $"Interception={(App.InputRouter.HasInterception ? "yes" : "no")}, Spikey={(App.InputRouter.HasSpikey ? "yes" : "no")}";
+        var availability = $"Interception={(App.InputRouter.HasInterception ? "yes" : "no")}, SCMFD Keyboard={(App.InputRouter.HasSCMFDKeyboard ? "yes" : "no")}";
         TxtBackendStatus.Text = $"Selected: {selected} | {availability}";
     }
 }

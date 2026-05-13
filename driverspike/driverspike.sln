@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 17.0.31903.0
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "TheSpikeyDriver", "TheSpikeyDriver\TheSpikeyDriver.vcxproj", "{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "SCMFD_Keyboard_Root", "SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.vcxproj", "{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "TestEnumeratorAndClient", "TestEnumeratorAndClient\TestEnumeratorAndClient.vcxproj", "{6CA4E354-1605-4485-A18F-FE438D4EB47E}"
 EndProject

@@ -4,9 +4,13 @@ if (-not $devcon) {
     exit 1 
 }
 
-$devices = Get-CimInstance Win32_PnPEntity | Where-Object { $_.Name -like '*TheSpikeyDriver*' }
+$devices = Get-CimInstance Win32_PnPEntity | Where-Object {
+    $_.Name -like '*SCMFD Keyboard*' -or
+    $_.Name -like '*SCMFD_Keyboard_Root*' -or
+    $_.PNPDeviceID -like 'ROOT\SCMFD_Keyboard_Root*'
+}
 if (-not $devices) { 
-    Write-Host "No active Spikey devices found to disable."
+    Write-Host "No active SCMFD Keyboard devices found to disable."
     exit 0 
 }
 

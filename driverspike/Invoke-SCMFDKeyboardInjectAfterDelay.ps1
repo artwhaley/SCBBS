@@ -1,7 +1,7 @@
 param(
     [int]$DelaySeconds = 5,
     [string]$Usage = "0x04",
-    [string]$Modifier = ""
+    [int]$DurationMs = 50
 )
 
 $ErrorActionPreference = "Stop"
@@ -15,8 +15,4 @@ if (-not (Test-Path -LiteralPath $client)) {
 Write-Host "Injecting usage $Usage in $DelaySeconds seconds. Focus the target window now."
 Start-Sleep -Seconds $DelaySeconds
 
-if ([string]::IsNullOrWhiteSpace($Modifier)) {
-    & $client --inject $Usage
-} else {
-    & $client --inject $Usage $Modifier
-}
+& $client --tap $Usage $DurationMs

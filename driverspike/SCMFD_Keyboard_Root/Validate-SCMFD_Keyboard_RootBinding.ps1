@@ -1,12 +1,12 @@
 #requires -version 5.1
 <#
 .SYNOPSIS
-Validate that TheSpikeyDriver-like HID entries are using kbdhid and inspect reported HID report sizes.
+Validate that SCMFD_Keyboard_Root-like HID entries are using kbdhid and inspect reported HID report sizes.
 
 .DESCRIPTION
 Non-destructive checks:
 - list keyboard-class PnP devices and show matched service driver
-- flag TheSpikeyDriver VID/PID matches
+- flag SCMFD_Keyboard_Root VID/PID matches
 - attempt to show InputReportByteLength for matching VID/PID via TestEnumeratorAndClient list output
 #>
 
@@ -70,7 +70,7 @@ $vidToken = "VID_$vidHex"
 $pidToken = "PID_$pidHex"
 $targetLabel = "VID=${vidToken} PID=${pidToken}"
 
-Write-Host ("=== Spikey binding check for {0} ===" -f $targetLabel)
+Write-Host ("=== SCMFD Keyboard binding check for {0} ===" -f $targetLabel)
 Write-Host "Collecting keyboard PnP devices..."
 
 $keyboardDevices = @(Get-CimInstance -ClassName Win32_PnPEntity -ErrorAction Stop |
@@ -86,10 +86,10 @@ $rows = foreach ($d in $keyboardDevices) {
     if ($null -ne $d.HardwareID) { $ids += @($d.HardwareID) }
     if ($null -ne $d.PNPDeviceID) { $ids += $d.PNPDeviceID }
     $idText = ($ids -join ' ')
-    $isVidPidSpikey = ($idText -match $vidToken) -and ($idText -match $pidToken)
+    $isVidPidSCMFDKeyboard = ($idText -match $vidToken) -and ($idText -match $pidToken)
     $isHidClassInstance = ($d.PNPDeviceID -like 'HID\HIDCLASS*')
     $hasKeyboardUsage = ($idText -match 'UP:0001_U:0006') -or ($idText -match 'HID_DEVICE_SYSTEM_KEYBOARD')
-    $isLikelySpikey = $isVidPidSpikey
+    $isLikelySCMFDKeyboard = $isVidPidSCMFDKeyboard
 
     $instanceForFilter = if ($d.DeviceID) { $d.DeviceID } else { $d.PNPDeviceID }
     if ([string]::IsNullOrWhiteSpace($instanceForFilter)) {
@@ -111,13 +111,13 @@ $rows = foreach ($d in $keyboardDevices) {
         $present = $null
     }
 
-    if (-not $isLikelySpikey -and $friendlyName) {
-        if ($friendlyName -like '*TheSpikey*' -or $friendlyName -like '*Spikey*' -or $friendlyName -like '*virtual HID*') {
-            $isLikelySpikey = $true
+    if (-not $isLikelySCMFDKeyboard -and $friendlyName) {
+        if ($friendlyName -like '*SCMFD Keyboard*' -or $friendlyName -like '*SCMFD_Keyboard_Root*' -or $friendlyName -like '*virtual HID*') {
+            $isLikelySCMFDKeyboard = $true
         }
     }
-    if (-not $isLikelySpikey -and $isHidClassInstance -and $hasKeyboardUsage -and ($idText -match 'HID\\TheSpikeyDriver')) {
-        $isLikelySpikey = $true
+    if (-not $isLikelySCMFDKeyboard -and $isHidClassInstance -and $hasKeyboardUsage -and ($idText -match 'HID\\SCMFD_Keyboard_Root')) {
+        $isLikelySCMFDKeyboard = $true
     }
 
     $serviceValue = if ($resolvedService.Service) { $resolvedService.Service } else { '<not-found>' }
@@ -126,8 +126,8 @@ $rows = foreach ($d in $keyboardDevices) {
     [PSCustomObject]@{
         InstanceId = $d.PNPDeviceID
         Name = if ($friendlyName) { $friendlyName } else { $d.Name }
-        IsSpikey = $isLikelySpikey
-        IsVidPidSpikey = $isVidPidSpikey
+        IsSCMFDKeyboard = $isLikelySCMFDKeyboard
+        IsVidPidSCMFDKeyboard = $isVidPidSCMFDKeyboard
         IsHidClassInstance = $isHidClassInstance
         Present = $present
         HasKeyboardUsage = $hasKeyboardUsage
@@ -140,31 +140,31 @@ $rows = foreach ($d in $keyboardDevices) {
 
 $rows | Format-Table -AutoSize
 
-$spikeyRows = @($rows | Where-Object { $_.IsSpikey -eq $true })
-if ($spikeyRows.Count -eq 0) {
+$scmfdKeyboardRows = @($rows | Where-Object { $_.IsSCMFDKeyboard -eq $true })
+if ($scmfdKeyboardRows.Count -eq 0) {
     Write-Warning "No keyboard PnP entry matched VID=${vidToken} PID=${pidToken}."
 } else {
-    Write-Host "Matched Spikey-like entries:"
-    $spikeyRows | Format-Table -AutoSize
-    $presentSpikeyRows = @($spikeyRows | Where-Object { $_.Present -eq $true -and $_.ConfigManagerErrorCode -eq 'CM_PROB_NONE' })
-    if ($presentSpikeyRows.Count -gt 0) {
-        Write-Host "Present + healthy Spikey-like entries:"
-        $presentSpikeyRows | Format-Table -AutoSize
+    Write-Host "Matched SCMFD Keyboard-like entries:"
+    $scmfdKeyboardRows | Format-Table -AutoSize
+    $presentSCMFDKeyboardRows = @($scmfdKeyboardRows | Where-Object { $_.Present -eq $true -and $_.ConfigManagerErrorCode -eq 'CM_PROB_NONE' })
+    if ($presentSCMFDKeyboardRows.Count -gt 0) {
+        Write-Host "Present + healthy SCMFD Keyboard-like entries:"
+        $presentSCMFDKeyboardRows | Format-Table -AutoSize
     } else {
-        Write-Warning "No present+healthy Spikey-like keyboard entries found."
+        Write-Warning "No present+healthy SCMFD Keyboard-like keyboard entries found."
     }
 
-    $bad = @($spikeyRows | Where-Object { $_.Service -ne 'kbdhid' -and $_.Service -ne '<not-found>' })
+    $bad = @($scmfdKeyboardRows | Where-Object { $_.Service -ne 'kbdhid' -and $_.Service -ne '<not-found>' })
     if ($bad.Count -gt 0) {
-        Write-Warning "Some matched Spikey entries are not bound to kbdhid."
+        Write-Warning "Some matched SCMFD Keyboard entries are not bound to kbdhid."
         $bad | ForEach-Object {
             Write-Warning ("  {0} Service={1}" -f $_.InstanceId, $_.Service)
         }
     }
 
-    $usageBad = @($spikeyRows | Where-Object { $_.HasKeyboardUsage -ne $true })
+    $usageBad = @($scmfdKeyboardRows | Where-Object { $_.HasKeyboardUsage -ne $true })
     if ($usageBad.Count -gt 0) {
-        Write-Warning "Some Spikey-like entries do not advertise keyboard usage IDs."
+        Write-Warning "Some SCMFD Keyboard-like entries do not advertise keyboard usage IDs."
     }
 }
 

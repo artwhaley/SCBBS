@@ -11,7 +11,7 @@ static VOID ScheduleNextReadReportTimer(_In_ PMANUAL_QUEUE_CONTEXT QueueContext,
     WdfTimerStart(QueueContext->Timer, WDF_REL_TIMEOUT_IN_MS(DelayMs));
 }
 
-VOID TheSpikeyDriverKickManualQueue(_In_ PDEVICE_CONTEXT DeviceContext, _In_ ULONG DelayMs)
+VOID SCMFD_Keyboard_RootKickManualQueue(_In_ PDEVICE_CONTEXT DeviceContext, _In_ ULONG DelayMs)
 {
     PMANUAL_QUEUE_CONTEXT queueContext;
     if (DeviceContext == NULL || DeviceContext->ManualQueue == NULL) {
@@ -49,7 +49,7 @@ static BOOLEAN ApplyWatchdog(_In_ PDEVICE_CONTEXT DeviceContext)
 
     if (changed) {
         DeviceContext->AutoReleaseCount++;
-        DeviceContext->LastCommandStatus = THESPIKEYDRIVER_COMMAND_STATUS_AUTO_RELEASED;
+        DeviceContext->LastCommandStatus = SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_AUTO_RELEASED;
         DeviceContext->KeyboardStateDirty = TRUE;
     }
 
@@ -70,7 +70,7 @@ static BOOLEAN HasHeldKeys(_In_ PDEVICE_CONTEXT DeviceContext)
     return FALSE;
 }
 
-NTSTATUS TheSpikeyDriverManualQueueInitialize(_In_ WDFDEVICE Device, _Out_ WDFQUEUE *Queue)
+NTSTATUS SCMFD_Keyboard_RootManualQueueInitialize(_In_ WDFDEVICE Device, _Out_ WDFQUEUE *Queue)
 {
     NTSTATUS status;
     WDF_IO_QUEUE_CONFIG queueConfig;
@@ -93,7 +93,7 @@ NTSTATUS TheSpikeyDriverManualQueueInitialize(_In_ WDFDEVICE Device, _Out_ WDFQU
     queueContext->Queue = queue;
     queueContext->DeviceContext = DeviceGetContext(Device);
 
-    WDF_TIMER_CONFIG_INIT(&timerConfig, TheSpikeyDriverEvtTimerFunc);
+    WDF_TIMER_CONFIG_INIT(&timerConfig, SCMFD_Keyboard_RootEvtTimerFunc);
     WDF_OBJECT_ATTRIBUTES_INIT(&timerAttributes);
     timerAttributes.ParentObject = queue;
     status = WdfTimerCreate(&timerConfig, &timerAttributes, &queueContext->Timer);
@@ -107,7 +107,7 @@ NTSTATUS TheSpikeyDriverManualQueueInitialize(_In_ WDFDEVICE Device, _Out_ WDFQU
     return STATUS_SUCCESS;
 }
 
-VOID TheSpikeyDriverEvtTimerFunc(_In_ WDFTIMER Timer)
+VOID SCMFD_Keyboard_RootEvtTimerFunc(_In_ WDFTIMER Timer)
 {
     NTSTATUS status;
     WDFQUEUE queue;

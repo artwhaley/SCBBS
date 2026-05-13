@@ -13,4 +13,6 @@ if not defined _VSINSTALL (
 )
 call "%_VSINSTALL%\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64
 if errorlevel 1 exit /b 1
-msbuild "%ROOT%driverspike.sln" %*
+msbuild "%ROOT%SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.vcxproj" %*
+if errorlevel 1 exit /b %errorlevel%
+msbuild "%ROOT%TestEnumeratorAndClient\TestEnumeratorAndClient.vcxproj" %*

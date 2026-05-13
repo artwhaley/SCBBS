@@ -16,10 +16,10 @@ typedef struct _QUEUE_CONTEXT {
 
 WDF_DECLARE_CONTEXT_TYPE_WITH_NAME(QUEUE_CONTEXT, QueueGetContext)
 
-NTSTATUS TheSpikeyDriverQueueInitialize(_In_ WDFDEVICE Device);
+NTSTATUS SCMFD_Keyboard_RootQueueInitialize(_In_ WDFDEVICE Device);
 
-EVT_WDF_IO_QUEUE_IO_DEVICE_CONTROL TheSpikeyDriverEvtIoDeviceControl;
-EVT_WDF_IO_QUEUE_IO_STOP TheSpikeyDriverEvtIoStop;
+EVT_WDF_IO_QUEUE_IO_DEVICE_CONTROL SCMFD_Keyboard_RootEvtIoDeviceControl;
+EVT_WDF_IO_QUEUE_IO_STOP SCMFD_Keyboard_RootEvtIoStop;
 
 EXTERN_C_END
 

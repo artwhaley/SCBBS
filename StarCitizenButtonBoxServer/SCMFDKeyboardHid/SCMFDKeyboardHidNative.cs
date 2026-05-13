@@ -1,9 +1,9 @@
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
-namespace StarCitizenButtonBoxServer.SpikeyHid;
+namespace StarCitizenButtonBoxServer.SCMFDKeyboardHid;
 
-internal static class SpikeyHidNative
+internal static class SCMFDKeyboardHidNative
 {
     internal const uint CmGetDeviceInterfaceListPresent = 0;
     internal const int CrSuccess = 0;

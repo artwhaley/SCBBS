@@ -55,7 +55,7 @@ HID_REPORT_DESCRIPTOR G_DefaultReportDescriptor[] = {
     0x15, 0x00,                    //   Logical Minimum (0)
     0x26, 0xFF, 0x00,              //   Logical Maximum (255)
     0x75, 0x08,                    //   Report Size (8)
-    0x95, THESPIKEYDRIVER_FEATURE_REPORT_SIZE_CB - 1, // Report Count (payload bytes after Report ID)
+    0x95, SCMFD_KEYBOARD_ROOT_FEATURE_REPORT_SIZE_CB - 1, // Report Count (payload bytes after Report ID)
     0xB1, 0x02,                    //   Feature (Data, Variable, Absolute)
     0xC0                           // End Collection
 };
@@ -289,13 +289,13 @@ static VOID MarkCommandResult(_In_ PDEVICE_CONTEXT DeviceContext, _In_ ULONG com
     DeviceContext->Sequence++;
 }
 
-static NTSTATUS HandleKeyDownCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PTHESPIKEYDRIVER_KEY_EVENT_INPUT Input)
+static NTSTATUS HandleKeyDownCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PSCMFD_KEYBOARD_ROOT_KEY_EVENT_INPUT Input)
 {
     ULONGLONG deadline = GetTickCount64() + ClampMaxHoldMs(Input->MaxHoldMs);
     UCHAR i;
 
     if (Input->Usage == 0) {
-        MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_INVALID_USAGE, Input->Usage);
+        MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_INVALID_USAGE, Input->Usage);
         return STATUS_INVALID_PARAMETER;
     }
 
@@ -309,7 +309,7 @@ static NTSTATUS HandleKeyDownCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PT
         DeviceContext->ModifierHoldDeadline[bit] = deadline;
         DeviceContext->KeyDownCount++;
         DeviceContext->KeyboardStateDirty = TRUE;
-        MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_OK, Input->Usage);
+        MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK, Input->Usage);
         return STATUS_SUCCESS;
     }
 
@@ -319,7 +319,7 @@ static NTSTATUS HandleKeyDownCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PT
             DeviceContext->KeyHoldDeadline[i] = deadline;
             DeviceContext->KeyDownCount++;
             DeviceContext->KeyboardStateDirty = TRUE;
-            MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_OK, Input->Usage);
+            MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK, Input->Usage);
             return STATUS_SUCCESS;
         }
     }
@@ -329,22 +329,22 @@ static NTSTATUS HandleKeyDownCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PT
             DeviceContext->KeyHoldDeadline[i] = deadline;
             DeviceContext->KeyDownCount++;
             DeviceContext->KeyboardStateDirty = TRUE;
-            MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_OK, Input->Usage);
+            MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK, Input->Usage);
             return STATUS_SUCCESS;
         }
     }
 
     DeviceContext->RolloverRejectCount++;
-    MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_ROLLOVER_FULL, Input->Usage);
+    MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_ROLLOVER_FULL, Input->Usage);
     return STATUS_BUFFER_OVERFLOW;
 }
 
-static NTSTATUS HandleKeyUpCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PTHESPIKEYDRIVER_KEY_EVENT_INPUT Input)
+static NTSTATUS HandleKeyUpCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PSCMFD_KEYBOARD_ROOT_KEY_EVENT_INPUT Input)
 {
     UCHAR i;
 
     if (Input->Usage == 0) {
-        MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_INVALID_USAGE, Input->Usage);
+        MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_INVALID_USAGE, Input->Usage);
         return STATUS_INVALID_PARAMETER;
     }
 
@@ -358,7 +358,7 @@ static NTSTATUS HandleKeyUpCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PTHE
         DeviceContext->ModifierHoldDeadline[bit] = 0;
         DeviceContext->KeyUpCount++;
         DeviceContext->KeyboardStateDirty = TRUE;
-        MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_OK, Input->Usage);
+        MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK, Input->Usage);
         return STATUS_SUCCESS;
     }
 
@@ -368,14 +368,14 @@ static NTSTATUS HandleKeyUpCommand(_In_ PDEVICE_CONTEXT DeviceContext, _In_ PTHE
             DeviceContext->KeyHoldDeadline[i] = 0;
             DeviceContext->KeyUpCount++;
             DeviceContext->KeyboardStateDirty = TRUE;
-            MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_OK, Input->Usage);
+            MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK, Input->Usage);
             return STATUS_SUCCESS;
         }
     }
 
     DeviceContext->DuplicateNoOpCount++;
     DeviceContext->KeyUpCount++;
-    MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_OK, Input->Usage);
+    MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK, Input->Usage);
     return STATUS_SUCCESS;
 }
 
@@ -387,7 +387,7 @@ static NTSTATUS HandleReleaseAllCommand(_In_ PDEVICE_CONTEXT DeviceContext)
     RtlZeroMemory(DeviceContext->KeyHoldDeadline, sizeof(DeviceContext->KeyHoldDeadline));
     DeviceContext->ReleaseAllCount++;
     DeviceContext->KeyboardStateDirty = TRUE;
-    MarkCommandResult(DeviceContext, THESPIKEYDRIVER_COMMAND_STATUS_OK, 0);
+    MarkCommandResult(DeviceContext, SCMFD_KEYBOARD_ROOT_COMMAND_STATUS_OK, 0);
     return STATUS_SUCCESS;
 }
 
@@ -395,12 +395,12 @@ static
 VOID
 FillStatsCommon(
     _In_ PDEVICE_CONTEXT DeviceContext,
-    _Out_ PTHESPIKEYDRIVER_STATS_OUTPUT Stats
+    _Out_ PSCMFD_KEYBOARD_ROOT_STATS_OUTPUT Stats
     )
 {
     RtlZeroMemory(Stats, sizeof(*Stats));
     Stats->StructSize = sizeof(*Stats);
-    Stats->Version = THESPIKEYDRIVER_CONTROL_VERSION;
+    Stats->Version = SCMFD_KEYBOARD_ROOT_CONTROL_VERSION;
     Stats->Sequence = DeviceContext->Sequence;
     Stats->KeyDownCount = DeviceContext->KeyDownCount;
     Stats->KeyUpCount = DeviceContext->KeyUpCount;
@@ -422,9 +422,9 @@ static
 NTSTATUS
 GetFeaturePacketBuffers(
     _In_ WDFREQUEST Request,
-    _Outptr_result_bytebuffer_(*InputLength) PTHESPIKEYDRIVER_FEATURE_REPORT *InputPacket,
+    _Outptr_result_bytebuffer_(*InputLength) PSCMFD_KEYBOARD_ROOT_FEATURE_REPORT *InputPacket,
     _Out_ size_t *InputLength,
-    _Outptr_result_bytebuffer_(*OutputLength) PTHESPIKEYDRIVER_FEATURE_REPORT *OutputPacket,
+    _Outptr_result_bytebuffer_(*OutputLength) PSCMFD_KEYBOARD_ROOT_FEATURE_REPORT *OutputPacket,
     _Out_ size_t *OutputLength
     )
 {
@@ -440,7 +440,7 @@ GetFeaturePacketBuffers(
         return status;
     }
 
-    status = WdfRequestRetrieveOutputBuffer(Request, THESPIKEYDRIVER_FEATURE_REPORT_SIZE_CB, (PVOID*)OutputPacket, OutputLength);
+    status = WdfRequestRetrieveOutputBuffer(Request, SCMFD_KEYBOARD_ROOT_FEATURE_REPORT_SIZE_CB, (PVOID*)OutputPacket, OutputLength);
     if (!NT_SUCCESS(status)) {
         return status;
     }
@@ -608,8 +608,8 @@ GetFeature(
     )
 {
     NTSTATUS status;
-    PTHESPIKEYDRIVER_FEATURE_REPORT inputPacket;
-    PTHESPIKEYDRIVER_FEATURE_REPORT outputPacket;
+    PSCMFD_KEYBOARD_ROOT_FEATURE_REPORT inputPacket;
+    PSCMFD_KEYBOARD_ROOT_FEATURE_REPORT outputPacket;
     size_t inputLength;
     size_t outputLength;
 
@@ -635,8 +635,8 @@ GetFeature(
         return STATUS_INVALID_PARAMETER;
     }
     if (inputLength >= sizeof(*inputPacket) &&
-        (inputPacket->Version != THESPIKEYDRIVER_FEATURE_VERSION ||
-         inputPacket->ControlCode != THESPIKEYDRIVER_FEATURE_GET_STATS)) {
+        (inputPacket->Version != SCMFD_KEYBOARD_ROOT_FEATURE_VERSION ||
+         inputPacket->ControlCode != SCMFD_KEYBOARD_ROOT_FEATURE_GET_STATS)) {
         TraceEvents(TRACE_LEVEL_WARNING, TRACE_HID,
             "control GetFeature bad feature size/version/control code req=%p inputLen=%Iu version=%u controlCode=%u",
             Request,
@@ -648,8 +648,8 @@ GetFeature(
 
     RtlZeroMemory(outputPacket, sizeof(*outputPacket));
     outputPacket->ReportId = CONTROL_COLLECTION_REPORT_ID;
-    outputPacket->ControlCode = THESPIKEYDRIVER_FEATURE_GET_STATS;
-    outputPacket->Version = THESPIKEYDRIVER_FEATURE_VERSION;
+    outputPacket->ControlCode = SCMFD_KEYBOARD_ROOT_FEATURE_GET_STATS;
+    outputPacket->Version = SCMFD_KEYBOARD_ROOT_FEATURE_VERSION;
     FillStatsCommon(QueueContext->DeviceContext, &outputPacket->Payload.Stats);
     WdfRequestSetInformation(Request, sizeof(*outputPacket));
     TraceEvents(TRACE_LEVEL_INFORMATION, TRACE_HID,
@@ -670,10 +670,10 @@ SetFeature(
     )
 {
     NTSTATUS status;
-    PTHESPIKEYDRIVER_FEATURE_REPORT inputPacket;
+    PSCMFD_KEYBOARD_ROOT_FEATURE_REPORT inputPacket;
     size_t inputLength;
 
-    status = WdfRequestRetrieveInputBuffer(Request, sizeof(THESPIKEYDRIVER_FEATURE_REPORT), (PVOID*)&inputPacket, &inputLength);
+    status = WdfRequestRetrieveInputBuffer(Request, sizeof(SCMFD_KEYBOARD_ROOT_FEATURE_REPORT), (PVOID*)&inputPacket, &inputLength);
     if (!NT_SUCCESS(status)) {
         TraceEvents(TRACE_LEVEL_ERROR, TRACE_HID,
             "control SetFeature input retrieval failed status=%!STATUS! req=%p", status, Request);
@@ -694,7 +694,7 @@ SetFeature(
         return STATUS_INVALID_PARAMETER;
     }
     if (inputLength < sizeof(*inputPacket) ||
-        inputPacket->Version != THESPIKEYDRIVER_FEATURE_VERSION) {
+        inputPacket->Version != SCMFD_KEYBOARD_ROOT_FEATURE_VERSION) {
         TraceEvents(TRACE_LEVEL_WARNING, TRACE_HID,
             "control SetFeature bad feature size/version/control code req=%p inputLen=%Iu version=%u controlCode=%u",
             Request,
@@ -705,13 +705,13 @@ SetFeature(
     }
 
     switch (inputPacket->ControlCode) {
-    case THESPIKEYDRIVER_FEATURE_KEY_DOWN:
+    case SCMFD_KEYBOARD_ROOT_FEATURE_KEY_DOWN:
         status = HandleKeyDownCommand(QueueContext->DeviceContext, &inputPacket->Payload.KeyEvent);
         break;
-    case THESPIKEYDRIVER_FEATURE_KEY_UP:
+    case SCMFD_KEYBOARD_ROOT_FEATURE_KEY_UP:
         status = HandleKeyUpCommand(QueueContext->DeviceContext, &inputPacket->Payload.KeyEvent);
         break;
-    case THESPIKEYDRIVER_FEATURE_RELEASE_ALL:
+    case SCMFD_KEYBOARD_ROOT_FEATURE_RELEASE_ALL:
         status = HandleReleaseAllCommand(QueueContext->DeviceContext);
         break;
     default:
@@ -719,7 +719,7 @@ SetFeature(
         break;
     }
     if (NT_SUCCESS(status)) {
-        TheSpikeyDriverKickManualQueue(QueueContext->DeviceContext, 1);
+        SCMFD_Keyboard_RootKickManualQueue(QueueContext->DeviceContext, 1);
         WdfRequestSetInformation(Request, sizeof(*inputPacket));
     }
     return status;
@@ -820,14 +820,14 @@ HandleSetModeIoctl(
     )
 {
     NTSTATUS status;
-    PTHESPIKEYDRIVER_SET_MODE_INPUT input;
+    PSCMFD_KEYBOARD_ROOT_SET_MODE_INPUT input;
     size_t inputLength;
 
     status = WdfRequestRetrieveInputBuffer(Request, sizeof(*input), (PVOID*)&input, &inputLength);
     if (!NT_SUCCESS(status)) {
         return status;
     }
-    if (input->StructSize < sizeof(*input) || input->Version != THESPIKEYDRIVER_CONTROL_VERSION) {
+    if (input->StructSize < sizeof(*input) || input->Version != SCMFD_KEYBOARD_ROOT_CONTROL_VERSION) {
         return STATUS_INVALID_PARAMETER;
     }
 
@@ -844,13 +844,13 @@ HandleGetStatsIoctl(
     _In_ WDFREQUEST Request
     )
 {
-    THESPIKEYDRIVER_STATS_OUTPUT stats;
+    SCMFD_KEYBOARD_ROOT_STATS_OUTPUT stats;
     FillStatsCommon(DeviceContext, &stats);
     return RequestCopyFromBuffer(Request, &stats, sizeof(stats));
 }
 
 VOID
-TheSpikeyDriverEvtIoHidDeviceControl(
+SCMFD_Keyboard_RootEvtIoHidDeviceControl(
     _In_ WDFQUEUE Queue,
     _In_ WDFREQUEST Request,
     _In_ size_t OutputBufferLength,
@@ -909,7 +909,7 @@ TheSpikeyDriverEvtIoHidDeviceControl(
             "GET_REPORT_DESCRIPTOR keyboard contract hidVersion=0x%04X inputBytes=%u outputBytes=2 featureBytes=%u totalReportIdItems=%u descriptorTail=%02X %02X %02X %02X",
             deviceContext->HidDescriptor.bcdHID,
             INPUT_REPORT_SIZE_CB,
-            THESPIKEYDRIVER_FEATURE_REPORT_SIZE_CB,
+            SCMFD_KEYBOARD_ROOT_FEATURE_REPORT_SIZE_CB,
             reportIdItems,
             deviceContext->ReportDescriptor[reportLength - 4],
             deviceContext->ReportDescriptor[reportLength - 3],
@@ -970,10 +970,10 @@ TheSpikeyDriverEvtIoHidDeviceControl(
             GetIoctlName(IoControlCode), Request);
         status = STATUS_NOT_IMPLEMENTED;
         break;
-    case IOCTL_THESPIKEYDRIVER_GET_STATS:
+    case IOCTL_SCMFD_KEYBOARD_ROOT_GET_STATS:
         status = HandleGetStatsIoctl(deviceContext, Request);
         break;
-    case IOCTL_THESPIKEYDRIVER_SET_MODE:
+    case IOCTL_SCMFD_KEYBOARD_ROOT_SET_MODE:
         status = HandleSetModeIoctl(deviceContext, Request);
         break;
     default:

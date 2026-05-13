@@ -66,8 +66,8 @@
                             BorderThickness="1">
                         <StackPanel>
                             <ui:TextBlock Text="INPUT BACKEND" FontTypography="BodyStrong" Margin="0,0,0,8"/>
-                            <CheckBox x:Name="ChkUseSpikey"
-                                      Content="Use Spikey (unchecked = Interception)"
+                            <CheckBox x:Name="ChkUseSCMFDKeyboard"
+                                      Content="Use SCMFD Keyboard (unchecked = Interception)"
                                       Checked="BackendToggle_Changed"
                                       Unchecked="BackendToggle_Changed"/>
                             <ui:TextBlock x:Name="TxtBackendStatus" Margin="0,8,0,0" FontSize="12"/>

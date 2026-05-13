@@ -1,6 +1,6 @@
-namespace StarCitizenButtonBoxServer.SpikeyHid;
+namespace StarCitizenButtonBoxServer.SCMFDKeyboardHid;
 
-internal static class SpikeyHidProtocol
+internal static class SCMFDKeyboardHidProtocol
 {
     internal const byte ControlCollectionReportId = 0x01;
     internal const ushort FeatureVersion = 1;

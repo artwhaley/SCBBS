@@ -1,20 +1,20 @@
 using System.Runtime.InteropServices;
-using StarCitizenButtonBoxServer.SpikeyHid;
+using StarCitizenButtonBoxServer.SCMFDKeyboardHid;
 using WindowsInput.Native;
 
 namespace StarCitizenButtonBoxServer;
 
-public sealed class SpikeyKeyboardBackend : IKeyboardInputBackend
+public sealed class SCMFDKeyboardBackend : IKeyboardInputBackend
 {
-    readonly SpikeyHidClient _client;
+    readonly SCMFDKeyboardHidClient _client;
     readonly Action<string>? _log;
 
-    public KeyboardBackendType BackendType => KeyboardBackendType.Spikey;
+    public KeyboardBackendType BackendType => KeyboardBackendType.SCMFDKeyboard;
 
-    public SpikeyKeyboardBackend(Action<string>? log = null)
+    public SCMFDKeyboardBackend(Action<string>? log = null)
     {
         _log = log;
-        _client = new SpikeyHidClient(log);
+        _client = new SCMFDKeyboardHidClient(log);
     }
 
     public async Task ExecuteAsync(BindingEntry binding, CancellationToken cancellationToken = default)
@@ -43,7 +43,7 @@ public sealed class SpikeyKeyboardBackend : IKeyboardInputBackend
                 MouseUp(binding.MouseInputAction);
             } else if (hasKey) {
                 if (!TryResolveUsage(binding.Key!, out var usage)) {
-                    _log?.Invoke($"[Spikey] Unmapped key '{binding.Key}', skipping command.");
+                    _log?.Invoke($"[SCMFD Keyboard] Unmapped key '{binding.Key}', skipping command.");
                     return;
                 }
                 await _client.KeyDownAsync(usage, hold, cancellationToken);

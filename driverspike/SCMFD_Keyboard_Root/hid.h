@@ -41,7 +41,7 @@ NTSTATUS RequestGetHidXferPacket_ToWriteToDevice(
     _Out_ HID_XFER_PACKET *Packet
     );
 
-VOID TheSpikeyDriverEvtIoHidDeviceControl(
+VOID SCMFD_Keyboard_RootEvtIoHidDeviceControl(
     _In_ WDFQUEUE Queue,
     _In_ WDFREQUEST Request,
     _In_ size_t OutputBufferLength,

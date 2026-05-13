@@ -1,6 +1,6 @@
 # driverspike
 
-This is the canonical source copy of the Spikey UMDF HID driver for the live SCBBS project.
+This is the canonical source copy of the SCMFD Keyboard UMDF HID driver for the live SCBBS project.
 
 Canonical repository location:
 
@@ -32,7 +32,7 @@ driverspike\x64\
 
 That output folder is intentionally ignored by git.
 
-The default solution builds the driver and `TestEnumeratorAndClient`. The old `KeystrokeInjectorGui` source is retained for historical reference, but it is not part of the default solution because the final SCBBS integration uses the .NET `SpikeyHid` backend instead of the old GUI.
+The build script targets the driver project and `TestEnumeratorAndClient` directly so MSBuild cannot silently skip the WDK project during a solution-level build. The old `KeystrokeInjectorGui` source is retained for historical reference, but it is not part of the default build because the final SCBBS integration uses the .NET `SCMFDKeyboardHid` backend instead of the old GUI.
 
 ## Deploy
 
@@ -42,9 +42,9 @@ For the current development rig, use the known cleanup/redeploy rhythm:
 
 ```powershell
 cd "C:\Users\artwh\OneDrive\Documents\SCMFD\SCBBS\driverspike"
-.\TheSpikeyDriver\Cleanup-TheSpikeyDriverEnvironment.ps1
-.\TheSpikeyDriver\Cleanup-TheSpikeyDriverEnvironment.ps1
-.\TheSpikeyDriver\Redeploy-TheSpikeyDriver.ps1 -Configuration Debug -SkipBuild
+.\SCMFD_Keyboard_Root\Cleanup-SCMFD_Keyboard_RootEnvironment.ps1
+.\SCMFD_Keyboard_Root\Cleanup-SCMFD_Keyboard_RootEnvironment.ps1
+.\SCMFD_Keyboard_Root\Redeploy-SCMFD_Keyboard_Root.ps1 -Configuration Debug -SkipBuild
 ```
 
 After a redeploy on this rig, reboot or relog before judging real keyboard input behavior. `--stats` may work before the keyboard input path is fully alive.
