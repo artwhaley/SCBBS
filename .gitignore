@@ -1,0 +1,20 @@
+# Build outputs
+bin/
+obj/
+_verify_build_out/
+star_mdns_build/
+
+# Visual Studio / local workspace
+.vs/
+*.user
+*.suo
+
+# Relocated driverspike outputs and runtime evidence
+driverspike/.vs/
+driverspike/x64/
+driverspike/**/x64/
+driverspike/tmfs/
+driverspike/**/*.etl
+driverspike/**/*-trace.txt
+driverspike/**/*-trace.txt.sum
+driverspike/**/evidence/
