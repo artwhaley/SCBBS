@@ -6,7 +6,7 @@ namespace StarCitizenButtonBoxServer;
 public partial class App : System.Windows.Application
 {
     public static BindingManager Bindings { get; private set; } = null!;
-    public static InputHandler? Keyboard { get; private set; }
+    public static KeyboardBackendRouter InputRouter { get; private set; } = null!;
     public static MediaHandler Media { get; private set; } = null!;
     public static ButtonBoxServer WebSocket { get; private set; } = null!;
 
@@ -81,23 +81,31 @@ public partial class App : System.Windows.Application
             return;
         }
 
-        try
-        {
-            Keyboard = new InputHandler(line =>
-                Dispatcher.BeginInvoke(() => ServerDashboardWindow.TryAppendLog(line)));
+        InputRouter = new KeyboardBackendRouter(line =>
+            Dispatcher.BeginInvoke(() => ServerDashboardWindow.TryAppendLog(line)));
+
+        try {
+            InputRouter.Register(new InputHandler(line =>
+                Dispatcher.BeginInvoke(() => ServerDashboardWindow.TryAppendLog(line))));
+        } catch (Exception ex) {
+            ServerDashboardWindow.TryAppendLog($"[Input] Interception unavailable: {ex.Message}");
         }
-        catch (Exception ex)
-        {
+
+        try {
+            InputRouter.Register(new SpikeyKeyboardBackend(line =>
+                Dispatcher.BeginInvoke(() => ServerDashboardWindow.TryAppendLog(line))));
+        } catch (Exception ex) {
+            ServerDashboardWindow.TryAppendLog($"[Input] Spikey unavailable: {ex.Message}");
+        }
+
+        InputRouter.InitializeDefaultSelection();
+        if (InputRouter.SelectedBackend is null) {
             MessageBox.Show(
-                $"Interception driver unavailable: {ex.Message}\n\n" +
-                "Keyboard commands won't work until the driver is installed.\n\n" +
-                "To fix: run ThirdParty\\Interception\\install-interception.exe /install as administrator, then restart.",
-                "Input driver error", MessageBoxButton.OK, MessageBoxImage.Error);
-            // Star Citizen ignores normal injected keyboard input. No driver, no keyboard magic.
-            Keyboard = null;
+                "No keyboard backend is available.\n\nInstall Interception and/or Spikey driver, then restart.",
+                "Input backend error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         Media = new MediaHandler();
-        WebSocket = new ButtonBoxServer(Bindings, Keyboard, Media);
+        WebSocket = new ButtonBoxServer(Bindings, InputRouter, Media);
 
         WebSocket.StatusLog += (_, line) =>
             Dispatcher.BeginInvoke(() => ServerDashboardWindow.TryAppendLog(line));
@@ -157,7 +165,15 @@ public partial class App : System.Windows.Application
     {
         WebSocket?.Dispose();
         Media?.Dispose();
-        Keyboard?.Dispose();
+        try
+        {
+            InputRouter?.ReleaseAllAsync().GetAwaiter().GetResult();
+        }
+        catch
+        {
+            // Best effort only on shutdown.
+        }
+        InputRouter?.Dispose();
         _singleInstanceMutex?.ReleaseMutex();
         _singleInstanceMutex?.Dispose();
         base.OnExit(e);

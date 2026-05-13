@@ -11,6 +11,7 @@ public partial class ServerDashboardWindow : FluentWindow
     static bool _wsClientsHooked;
 
     bool _logVisible;
+    bool _suppressBackendToggleEvent;
     const double LogExpansionHeight = 268;
 
     public ServerDashboardWindow()
@@ -21,6 +22,7 @@ public partial class ServerDashboardWindow : FluentWindow
             TryFlushPendingLog();
             RefreshEndpointCore();
             RefreshClients();
+            RefreshBackendControls();
         };
         Closed += (_, _) => _instance = null;
     }
@@ -43,6 +45,7 @@ public partial class ServerDashboardWindow : FluentWindow
         _instance.Show();
         _instance.Activate();
         _instance.RefreshEndpointCore();
+        _instance.RefreshBackendControls();
         RefreshClients();
     }
 
@@ -136,5 +139,43 @@ public partial class ServerDashboardWindow : FluentWindow
             BtnLog.Content = "Show Log";
             _logVisible = false;
         }
+    }
+
+    void BackendToggle_Changed(object sender, RoutedEventArgs e)
+    {
+        if (_suppressBackendToggleEvent) {
+            return;
+        }
+        if (App.InputRouter == null) {
+            return;
+        }
+        var desired = ChkUseSpikey.IsChecked == true ? KeyboardBackendType.Spikey : KeyboardBackendType.Interception;
+        if (!App.InputRouter.TrySelect(desired, out var reason)) {
+            TryAppendLog($"[Input] {reason}");
+        } else {
+            TryAppendLog($"[Input] {reason}");
+        }
+        RefreshBackendControls();
+    }
+
+    void RefreshBackendControls()
+    {
+        if (App.InputRouter == null) {
+            ChkUseSpikey.IsEnabled = false;
+            TxtBackendStatus.Text = "Input router not initialized.";
+            return;
+        }
+
+        _suppressBackendToggleEvent = true;
+        try {
+            ChkUseSpikey.IsEnabled = App.InputRouter.CanSwitch;
+            ChkUseSpikey.IsChecked = App.InputRouter.SelectedBackend == KeyboardBackendType.Spikey;
+        } finally {
+            _suppressBackendToggleEvent = false;
+        }
+
+        var selected = App.InputRouter.SelectedBackend?.ToString() ?? "None";
+        var availability = $"Interception={(App.InputRouter.HasInterception ? "yes" : "no")}, Spikey={(App.InputRouter.HasSpikey ? "yes" : "no")}";
+        TxtBackendStatus.Text = $"Selected: {selected} | {availability}";
     }
 }

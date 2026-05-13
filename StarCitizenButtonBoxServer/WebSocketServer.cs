@@ -15,7 +15,7 @@ public sealed class ButtonBoxServer : IDisposable
     const int WireMaxChars = 600;
 
     readonly BindingManager _bindings;
-    readonly InputHandler? _keyboard;
+    readonly KeyboardBackendRouter _keyboard;
     readonly MediaHandler _media;
     readonly ConcurrentDictionary<Guid, IWebSocketConnection> _clients = new();
 
@@ -28,7 +28,7 @@ public sealed class ButtonBoxServer : IDisposable
     public event EventHandler<string>? StatusLog;
     public event EventHandler? ClientsChanged;
 
-    public ButtonBoxServer(BindingManager bindings, InputHandler? keyboard,
+    public ButtonBoxServer(BindingManager bindings, KeyboardBackendRouter keyboard,
         MediaHandler media)
     {
         _bindings = bindings;
@@ -155,9 +155,8 @@ public sealed class ButtonBoxServer : IDisposable
 
         try
         {
-            if (_keyboard == null)
-            {
-                Log($"CMD '{commandId}' -> Interception driver not loaded, skipping.");
+            if (_keyboard.SelectedBackend is null) {
+                Log($"CMD '{commandId}' -> no input backend selected.");
                 return;
             }
             await _keyboard.ExecuteAsync(entry);

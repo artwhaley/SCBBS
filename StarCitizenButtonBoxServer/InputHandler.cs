@@ -23,7 +23,7 @@ public enum MouseInputAction
 // Routes keyboard input through the Interception kernel filter driver, which bypasses
 // the injected-input flag that Star Citizen uses to ignore normal Win32 SendInput calls.
 // Prerequisite: install ThirdParty/Interception/install-interception.exe /install as admin.
-public sealed class InputHandler : IDisposable
+public sealed class InputHandler : IKeyboardInputBackend
 {
     readonly IntPtr _ctx;
     readonly Action<string>? _log;
@@ -31,6 +31,7 @@ public sealed class InputHandler : IDisposable
 
     // Interception device indices: Keyboard (1-10), Mouse (11-20).
     int _keyboardDevice = 1;
+    public KeyboardBackendType BackendType => KeyboardBackendType.Interception;
 
     public InputHandler(Action<string>? log = null)
     {
@@ -230,6 +231,12 @@ public sealed class InputHandler : IDisposable
     {
         if (_ctx != IntPtr.Zero)
             interception_destroy_context(_ctx);
+    }
+
+    public Task ReleaseAllAsync(CancellationToken cancellationToken = default)
+    {
+        // Interception path is stateless from this app's perspective.
+        return Task.CompletedTask;
     }
 
     // Interception P/Invoke
