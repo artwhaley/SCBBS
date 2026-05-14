@@ -12,6 +12,8 @@
     <AssemblyName>StarCitizenButtonBoxServer</AssemblyName>
     <SupportedOSPlatformVersion>10.0.22621.0</SupportedOSPlatformVersion>
     <ApplicationIcon>Star Citizen BBS.ico</ApplicationIcon>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +26,7 @@
 
   <ItemGroup>
     <Using Remove="System.Windows.Forms" />
+    <Compile Remove="SCMFDJoystickTestClient\**\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
