@@ -4,10 +4,10 @@
 #include <hidusage.h>
 #include "hid.tmh"
 
-static const WCHAR g_Manufacturer[] = L"UMDF Virtual hidmini device Manufacturer string";
-static const WCHAR g_Product[] = L"UMDF Virtual hidmini device Product string";
-static const WCHAR g_Serial[] = L"UMDF Virtual hidmini device Serial Number string";
-static const WCHAR g_DeviceIndexed[] = L"UMDF Virtual hidmini device";
+static const WCHAR g_Manufacturer[] = L"SCMFD";
+static const WCHAR g_Product[] = L"SCMFD Keyboard Root";
+static const WCHAR g_Serial[] = L"SCMFD Keyboard Root 0001";
+static const WCHAR g_DeviceIndexed[] = L"SCMFD Keyboard Root";
 #define VHIDMINI_DEVICE_STRING_INDEX 5
 
 HID_REPORT_DESCRIPTOR G_DefaultReportDescriptor[] = {

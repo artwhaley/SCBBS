@@ -225,6 +225,12 @@ function Remove-SCMFD_Joystick_RootPnPDevices {
     param([string]$DevconPath)
     if (-not $DevconPath) { Write-Warning 'devcon.exe not found; skipping hardware remove (remove phantom devices manually if needed).'; return }
     foreach ($args in @(
+            @('remove', 'root\SCMFD_Joystick_A'),
+            @('remove', '@root\SCMFD_Joystick_A'),
+            @('remove', 'ROOT\SCMFD_Joystick_A'),
+            @('remove', 'root\SCMFD_Joystick_B'),
+            @('remove', '@root\SCMFD_Joystick_B'),
+            @('remove', 'ROOT\SCMFD_Joystick_B'),
             @('remove', 'root\SCMFD_Joystick_Root'),
             @('remove', '@root\SCMFD_Joystick_Root'),
             @('remove', 'ROOT\SCMFD_Joystick_Root')
@@ -397,8 +403,10 @@ Write-Host "pnputil /add-driver `"$inf`" /install"
 & pnputil.exe /add-driver $inf /install 2>&1 | ForEach-Object { Write-Host $_ }
 
 if ($devcon) {
-    Write-Host "devcon install `"$inf`" root\SCMFD_Joystick_Root"
-    Invoke-Devcon -DevconPath $devcon -Arguments @('install', $inf, 'root\SCMFD_Joystick_Root')
+    Write-Host "devcon install `"$inf`" root\SCMFD_Joystick_A"
+    Invoke-Devcon -DevconPath $devcon -Arguments @('install', $inf, 'root\SCMFD_Joystick_A')
+    Write-Host "devcon install `"$inf`" root\SCMFD_Joystick_B"
+    Invoke-Devcon -DevconPath $devcon -Arguments @('install', $inf, 'root\SCMFD_Joystick_B')
 }
 
 Write-Host 'Redeploy finished. If the driver still fails, check %windir%\INF\setupapi.dev.log for the last SCMFD_Joystick_Root section.'

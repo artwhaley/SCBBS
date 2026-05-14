@@ -27,10 +27,12 @@ SCMFD_Joystick_Root.dll = 1
 %ManufacturerName% = StandardLegacy,NTamd64.10.0...14393
 
 [Standard.NTamd64.10.0...22000]
-%DeviceName% = SCMFD_Joystick_Root_Inst_Win11, root\SCMFD_Joystick_Root
+%DeviceNameA% = SCMFD_Joystick_Root_Inst_Win11, root\SCMFD_Joystick_A
+%DeviceNameB% = SCMFD_Joystick_Root_Inst_Win11, root\SCMFD_Joystick_B
 
 [StandardLegacy.NTamd64.10.0...14393]
-%DeviceName% = SCMFD_Joystick_Root_Inst_Win10, root\SCMFD_Joystick_Root
+%DeviceNameA% = SCMFD_Joystick_Root_Inst_Win10, root\SCMFD_Joystick_A
+%DeviceNameB% = SCMFD_Joystick_Root_Inst_Win10, root\SCMFD_Joystick_B
 
 [SCMFD_Joystick_Root_Inst_Win11.NT]
 CopyFiles = UMDriverCopy
@@ -66,7 +68,7 @@ UmdfFsContextUsePolicy = CanUseFsContext2
 [SCMFD_Joystick_Root_Inst_Win10.NT]
 CopyFiles = UMDriverCopy
 
-; Win10: same kernel service pattern as Microsoft WUDFVhidmini / UMDF HID filter docs —
+; Win10: same kernel service pattern as Microsoft WUDFVhidmini / UMDF HID filter docs.
 ; AddService lines must be paired with LowerFilters so the reflector sits in the stack.
 ; See "Specifying the Reflector in an INF File" (AddService + LowerFilters AddReg).
 [SCMFD_Joystick_Root_Inst_Win10.NT.hw]
@@ -113,5 +115,6 @@ SCMFD_Joystick_Root.dll
 [Strings]
 ManufacturerName = "SCMFD"
 DiskName = "SCMFD Joystick Root installation disk"
-DeviceName = "SCMFD Joystick Root"
+DeviceNameA = "SCMFD Joystick A"
+DeviceNameB = "SCMFD Joystick B"
 WudfRdDisplayName = "Windows Driver Foundation - User-mode Driver Framework Reflector"

@@ -5,9 +5,6 @@
 #include "hid.tmh"
 
 static const WCHAR g_Manufacturer[] = L"SCMFD";
-static const WCHAR g_Product[] = L"SCMFD Joystick Root";
-static const WCHAR g_Serial[] = L"SCMFD Joystick Root 0001";
-static const WCHAR g_DeviceIndexed[] = L"SCMFD Joystick Root";
 #define SCMFD_JOYSTICK_DEVICE_STRING_INDEX 5
 
 HID_REPORT_DESCRIPTOR G_DefaultReportDescriptor[] = {
@@ -156,7 +153,7 @@ static NTSTATUS GetStringId(_In_ WDFREQUEST Request, _Out_ ULONG *StringId, _Out
     return STATUS_SUCCESS;
 }
 
-NTSTATUS GetIndexedString(_In_ WDFREQUEST Request)
+NTSTATUS GetIndexedString(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request)
 {
     NTSTATUS status;
     ULONG languageId;
@@ -170,10 +167,13 @@ NTSTATUS GetIndexedString(_In_ WDFREQUEST Request)
     if (stringIndex != SCMFD_JOYSTICK_DEVICE_STRING_INDEX) {
         return STATUS_INVALID_PARAMETER;
     }
-    return RequestCopyFromBuffer(Request, (PVOID)g_DeviceIndexed, sizeof(g_DeviceIndexed));
+    return RequestCopyFromBuffer(
+        Request,
+        (PVOID)QueueContext->DeviceContext->IndexedString,
+        (wcslen(QueueContext->DeviceContext->IndexedString) + 1) * sizeof(WCHAR));
 }
 
-NTSTATUS GetString(_In_ WDFREQUEST Request)
+NTSTATUS GetString(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request)
 {
     NTSTATUS status;
     ULONG languageId;
@@ -193,12 +193,12 @@ NTSTATUS GetString(_In_ WDFREQUEST Request)
         string = g_Manufacturer;
         break;
     case HID_STRING_ID_IPRODUCT:
-        stringSizeCb = sizeof(g_Product);
-        string = g_Product;
+        string = QueueContext->DeviceContext->ProductString;
+        stringSizeCb = (wcslen(string) + 1) * sizeof(WCHAR);
         break;
     case HID_STRING_ID_ISERIALNUMBER:
-        stringSizeCb = sizeof(g_Serial);
-        string = g_Serial;
+        string = QueueContext->DeviceContext->SerialString;
+        stringSizeCb = (wcslen(string) + 1) * sizeof(WCHAR);
         break;
     default:
         return STATUS_INVALID_PARAMETER;
@@ -463,10 +463,10 @@ VOID SCMFD_Joystick_RootEvtIoHidDeviceControl(
         status = SetFeature(queueContext, Request);
         break;
     case IOCTL_HID_GET_STRING:
-        status = GetString(Request);
+        status = GetString(queueContext, Request);
         break;
     case IOCTL_HID_GET_INDEXED_STRING:
-        status = GetIndexedString(Request);
+        status = GetIndexedString(queueContext, Request);
         break;
     case IOCTL_HID_ACTIVATE_DEVICE:
     case IOCTL_HID_DEACTIVATE_DEVICE:

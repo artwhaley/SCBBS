@@ -13,10 +13,10 @@ Non-destructive checks:
 [CmdletBinding()]
 param(
     [ValidateRange(1, 65535)]
-    [int] $VendorId = 0xDEED,
+    [int] $VendorId = 0x5343,
 
     [ValidateRange(1, 65535)]
-    [int] $ProductId = 0xFEED
+    [int] $ProductId = 0x4B42
 )
 
 Set-StrictMode -Version Latest

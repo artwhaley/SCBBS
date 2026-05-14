@@ -35,6 +35,11 @@ typedef struct _DEVICE_CONTEXT {
     ULONG LastCommandStatus;
     ULONG LastButton;
     ULONG LastAxis;
+    ULONG JoystickSlot;
+    USHORT ProductId;
+    PCWSTR ProductString;
+    PCWSTR SerialString;
+    PCWSTR IndexedString;
     SCMFD_JOYSTICK_ROOT_INPUT_REPORT CurrentReport;
     SCMFD_JOYSTICK_ROOT_INPUT_REPORT LastCompletedReport;
 } DEVICE_CONTEXT, *PDEVICE_CONTEXT;

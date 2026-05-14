@@ -8,14 +8,16 @@ internal sealed class SCMFDJoystickHidClient : IDisposable
     readonly Action<string>? _log;
     readonly SafeFileHandle _handle;
     readonly string _selectedPath;
+    readonly SCMFDJoystickSlot _slot;
 
-    public SCMFDJoystickHidClient(Action<string>? log = null)
+    public SCMFDJoystickHidClient(Action<string>? log = null, SCMFDJoystickSlot slot = SCMFDJoystickSlot.A)
     {
         _log = log;
-        (_selectedPath, _handle) = OpenSingleControlHandle();
-        _log?.Invoke($"[SCMFD Joystick] Selected control path: {_selectedPath}");
+        _slot = slot;
+        (_selectedPath, _handle) = OpenSingleControlHandle(_slot);
+        _log?.Invoke($"[SCMFD Joystick {_slot}] Selected control path: {_selectedPath}");
         var stats = GetStats();
-        _log?.Invoke($"[SCMFD Joystick] Protocol ready. seq={stats.Sequence} buttons={stats.ButtonCommandCount} axes={stats.AxisCommandCount}");
+        _log?.Invoke($"[SCMFD Joystick {_slot}] Protocol ready. seq={stats.Sequence} buttons={stats.ButtonCommandCount} axes={stats.AxisCommandCount}");
     }
 
     public Task SetButtonAsync(int oneBasedButton, bool pressed, CancellationToken cancellationToken = default)
@@ -105,7 +107,7 @@ internal sealed class SCMFDJoystickHidClient : IDisposable
         };
     }
 
-    static (string Path, SafeFileHandle Handle) OpenSingleControlHandle()
+    static (string Path, SafeFileHandle Handle) OpenSingleControlHandle(SCMFDJoystickSlot slot)
     {
         SCMFDJoystickHidNative.HidD_GetHidGuid(out var hidGuid);
         var cr = SCMFDJoystickHidNative.CM_Get_Device_Interface_List_SizeW(out var len, ref hidGuid, null, SCMFDJoystickHidNative.CmGetDeviceInterfaceListPresent);
@@ -130,7 +132,7 @@ internal sealed class SCMFDJoystickHidClient : IDisposable
             var handle = TryOpen(path);
             if (handle == null) continue;
             try {
-                if (IsSCMFDJoystickControlCollection(handle)) {
+                if (IsSCMFDJoystickControlCollection(handle, GetProductId(slot))) {
                     candidates.Add(path);
                 }
             } finally {
@@ -139,10 +141,10 @@ internal sealed class SCMFDJoystickHidClient : IDisposable
         }
 
         if (candidates.Count == 0) {
-            throw new InvalidOperationException("No SCMFD Joystick control collection found.");
+            throw new InvalidOperationException($"No SCMFD Joystick {slot} control collection found.");
         }
         if (candidates.Count > 1) {
-            throw new InvalidOperationException("Duplicate SCMFD Joystick control collections found:\n" + string.Join("\n", candidates));
+            throw new InvalidOperationException($"Duplicate SCMFD Joystick {slot} control collections found:\n" + string.Join("\n", candidates));
         }
 
         var finalHandle = TryOpen(candidates[0]) ?? throw new InvalidOperationException($"Unable to open selected SCMFD Joystick path: {candidates[0]}");
@@ -175,11 +177,22 @@ internal sealed class SCMFDJoystickHidClient : IDisposable
         return null;
     }
 
-    static bool IsSCMFDJoystickControlCollection(SafeFileHandle handle)
+    static ushort GetProductId(SCMFDJoystickSlot slot)
+    {
+        return slot switch
+        {
+            SCMFDJoystickSlot.A => SCMFDJoystickHidProtocol.ProductIdA,
+            SCMFDJoystickSlot.B => SCMFDJoystickHidProtocol.ProductIdB,
+            SCMFDJoystickSlot.Legacy => SCMFDJoystickHidProtocol.ProductIdLegacy,
+            _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
+        };
+    }
+
+    static bool IsSCMFDJoystickControlCollection(SafeFileHandle handle, ushort productId)
     {
         var attributes = new SCMFDJoystickHidNative.HiddAttributes { Size = System.Runtime.InteropServices.Marshal.SizeOf<SCMFDJoystickHidNative.HiddAttributes>() };
         if (!SCMFDJoystickHidNative.HidD_GetAttributes(handle, ref attributes)) return false;
-        if (attributes.VendorID != SCMFDJoystickHidProtocol.VendorId || attributes.ProductID != SCMFDJoystickHidProtocol.ProductId) return false;
+        if (attributes.VendorID != SCMFDJoystickHidProtocol.VendorId || attributes.ProductID != productId) return false;
         if (!SCMFDJoystickHidNative.HidD_GetPreparsedData(handle, out var ppd) || ppd == IntPtr.Zero) return false;
         try {
             if (SCMFDJoystickHidNative.HidP_GetCaps(ppd, out var caps) != SCMFDJoystickHidNative.HidpStatusSuccess) return false;

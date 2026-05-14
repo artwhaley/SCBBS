@@ -189,7 +189,7 @@ internal sealed class SCMFDKeyboardHidClient : IDisposable
             var controlMatch = caps.UsagePage == SCMFDKeyboardHidProtocol.ControlUsagePage &&
                                caps.Usage == SCMFDKeyboardHidProtocol.ControlUsage &&
                                caps.FeatureReportByteLength == SCMFDKeyboardHidProtocol.FeatureReportLength;
-            vendorMatch = attributes.VendorID == 0xDEED && attributes.ProductID == 0xFEED;
+            vendorMatch = attributes.VendorID == 0x5343 && attributes.ProductID == 0x4B42;
             return controlMatch;
         } finally {
             SCMFDKeyboardHidNative.HidD_FreePreparsedData(ppd);

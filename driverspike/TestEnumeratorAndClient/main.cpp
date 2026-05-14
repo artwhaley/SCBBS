@@ -76,10 +76,43 @@ static bool IsSCMFDJoystickControlCollection(const HIDP_CAPS* caps)
         caps->FeatureReportByteLength == SCMFD_JOYSTICK_ROOT_FEATURE_REPORT_SIZE_CB);
 }
 
+static bool IsSCMFDJoystickProductId(USHORT productId)
+{
+    return productId == SCMFD_JOYSTICK_ROOT_PID_A ||
+        productId == SCMFD_JOYSTICK_ROOT_PID_B ||
+        productId == SCMFD_JOYSTICK_ROOT_PID_LEGACY;
+}
+
+static const wchar_t* GetJoystickSlotLabel(USHORT productId)
+{
+    if (productId == SCMFD_JOYSTICK_ROOT_PID_A) return L"A";
+    if (productId == SCMFD_JOYSTICK_ROOT_PID_B) return L"B";
+    if (productId == SCMFD_JOYSTICK_ROOT_PID_LEGACY) return L"legacy";
+    return L"?";
+}
+
+static bool ParseJoystickTarget(const wchar_t* text, USHORT* productId)
+{
+    if (text == nullptr || text[0] == L'\0') return false;
+    if (_wcsicmp(text, L"A") == 0) {
+        *productId = SCMFD_JOYSTICK_ROOT_PID_A;
+        return true;
+    }
+    if (_wcsicmp(text, L"B") == 0) {
+        *productId = SCMFD_JOYSTICK_ROOT_PID_B;
+        return true;
+    }
+    if (_wcsicmp(text, L"legacy") == 0) {
+        *productId = SCMFD_JOYSTICK_ROOT_PID_LEGACY;
+        return true;
+    }
+    return false;
+}
+
 static bool IsSCMFDJoystickCollection(const HIDD_ATTRIBUTES* attr, const HIDP_CAPS* caps)
 {
     return (attr->VendorID == SCMFD_JOYSTICK_ROOT_VID &&
-        attr->ProductID == SCMFD_JOYSTICK_ROOT_PID &&
+        IsSCMFDJoystickProductId(attr->ProductID) &&
         caps->UsagePage == 0x0001 &&
         caps->Usage == 0x0004 &&
         caps->InputReportByteLength == SCMFD_JOYSTICK_ROOT_INPUT_REPORT_SIZE_CB);
@@ -106,8 +139,16 @@ static bool ListAllHidInterfaces(void)
         if (QueryHidIdentity(h, &attr, &caps)) {
             const wchar_t* tag = L"";
             if (IsSCMFDKeyboardControlCollection(&caps)) tag = L" [scmfd-keyboard-control]";
-            else if (IsSCMFDJoystickControlCollection(&caps)) tag = L" [scmfd-joystick-control]";
-            else if (IsSCMFDJoystickCollection(&attr, &caps)) tag = L" [scmfd-joystick]";
+            else if (IsSCMFDJoystickControlCollection(&caps) && IsSCMFDJoystickProductId(attr.ProductID)) {
+                if (attr.ProductID == SCMFD_JOYSTICK_ROOT_PID_A) tag = L" [scmfd-joystick-control A]";
+                else if (attr.ProductID == SCMFD_JOYSTICK_ROOT_PID_B) tag = L" [scmfd-joystick-control B]";
+                else tag = L" [scmfd-joystick-control legacy]";
+            }
+            else if (IsSCMFDJoystickCollection(&attr, &caps)) {
+                if (attr.ProductID == SCMFD_JOYSTICK_ROOT_PID_A) tag = L" [scmfd-joystick A]";
+                else if (attr.ProductID == SCMFD_JOYSTICK_ROOT_PID_B) tag = L" [scmfd-joystick B]";
+                else tag = L" [scmfd-joystick legacy]";
+            }
 
             wprintf(L"path=%s VID=0x%04X PID=0x%04X UsagePage=0x%04X Usage=0x%04X InputBytes=%u OutputBytes=%u FeatureBytes=%u%s\n",
                 p, attr.VendorID, attr.ProductID, caps.UsagePage, caps.Usage,
@@ -142,7 +183,7 @@ static bool FindControlDevice(HANDLE* outHandle)
         CloseHandle(h);
         if (!ok || !IsSCMFDKeyboardControlCollection(&caps)) continue;
         allSCMFDKeyboard.push_back(cur);
-        if (attr.VendorID == 0xDEED && attr.ProductID == 0xFEED) candidates.push_back(cur);
+        if (attr.VendorID == 0x5343 && attr.ProductID == 0x4B42) candidates.push_back(cur);
     }
 
     const std::vector<std::wstring>& target = !candidates.empty() ? candidates : allSCMFDKeyboard;
@@ -165,7 +206,7 @@ static bool FindControlDevice(HANDLE* outHandle)
     return true;
 }
 
-static bool FindJoystickControlDevice(HANDLE* outHandle)
+static bool FindJoystickControlDevice(HANDLE* outHandle, USHORT targetProductId)
 {
     GUID hidGuid;
     ULONG listLen = 0;
@@ -187,17 +228,18 @@ static bool FindJoystickControlDevice(HANDLE* outHandle)
         bool ok = QueryHidIdentity(h, &attr, &caps);
         CloseHandle(h);
         if (!ok || !IsSCMFDJoystickControlCollection(&caps)) continue;
-        if (attr.VendorID == SCMFD_JOYSTICK_ROOT_VID && attr.ProductID == SCMFD_JOYSTICK_ROOT_PID) {
+        if (attr.VendorID == SCMFD_JOYSTICK_ROOT_VID && attr.ProductID == targetProductId) {
             candidates.push_back(cur);
         }
     }
 
     if (candidates.empty()) {
-        fprintf(stderr, "No SCMFD Joystick control collection found.\n");
+        fwprintf(stderr, L"No SCMFD Joystick %s control collection found.\n", GetJoystickSlotLabel(targetProductId));
         return false;
     }
     if (candidates.size() > 1) {
-        fprintf(stderr, "ERROR: duplicate SCMFD Joystick control collections found (%zu). Clean stale SCMFD Joystick devices/packages.\n", candidates.size());
+        fwprintf(stderr, L"ERROR: duplicate SCMFD Joystick %s control collections found (%zu). Clean stale SCMFD Joystick devices/packages.\n",
+            GetJoystickSlotLabel(targetProductId), candidates.size());
         for (const std::wstring& path : candidates) wprintf(L"  candidate: %s\n", path.c_str());
         return false;
     }
@@ -349,25 +391,31 @@ int wmain(int argc, wchar_t** argv)
     if (argc > 1 && wcscmp(argv[1], L"--list-hid") == 0) return ListAllHidInterfaces() ? 0 : 1;
 
     if (argc > 1 && wcsncmp(argv[1], L"--joy", 5) == 0) {
+        USHORT targetProductId = SCMFD_JOYSTICK_ROOT_PID_A;
+        int argBase = 2;
+        if (argc > 2 && ParseJoystickTarget(argv[2], &targetProductId)) {
+            argBase = 3;
+        }
+
         HANDLE joyControl = INVALID_HANDLE_VALUE;
-        if (!FindJoystickControlDevice(&joyControl)) return 1;
+        if (!FindJoystickControlDevice(&joyControl, targetProductId)) return 1;
 
         bool joyOk = false;
         if (wcscmp(argv[1], L"--joy-stats") == 0) {
             joyOk = GetJoystickStats(joyControl);
-        } else if (argc > 3 && wcscmp(argv[1], L"--joy-button") == 0) {
+        } else if (argc > argBase + 1 && wcscmp(argv[1], L"--joy-button") == 0) {
             unsigned int button = 0;
-            bool pressed = (_wcsicmp(argv[3], L"down") == 0 || _wcsicmp(argv[3], L"on") == 0 || wcscmp(argv[3], L"1") == 0);
-            bool released = (_wcsicmp(argv[3], L"up") == 0 || _wcsicmp(argv[3], L"off") == 0 || wcscmp(argv[3], L"0") == 0);
-            joyOk = ParseUIntArg(argv[2], &button) && (pressed || released) && SendJoystickButton(joyControl, button, pressed);
-        } else if (argc > 3 && wcscmp(argv[1], L"--joy-axis") == 0) {
+            bool pressed = (_wcsicmp(argv[argBase + 1], L"down") == 0 || _wcsicmp(argv[argBase + 1], L"on") == 0 || wcscmp(argv[argBase + 1], L"1") == 0);
+            bool released = (_wcsicmp(argv[argBase + 1], L"up") == 0 || _wcsicmp(argv[argBase + 1], L"off") == 0 || wcscmp(argv[argBase + 1], L"0") == 0);
+            joyOk = ParseUIntArg(argv[argBase], &button) && (pressed || released) && SendJoystickButton(joyControl, button, pressed);
+        } else if (argc > argBase + 1 && wcscmp(argv[1], L"--joy-axis") == 0) {
             unsigned int axis = 0;
             int value = 0;
-            joyOk = ParseAxisName(argv[2], &axis) && ParseIntArg(argv[3], &value) && SendJoystickAxis(joyControl, axis, value);
+            joyOk = ParseAxisName(argv[argBase], &axis) && ParseIntArg(argv[argBase + 1], &value) && SendJoystickAxis(joyControl, axis, value);
         } else if (wcscmp(argv[1], L"--joy-release-all") == 0) {
             joyOk = SendJoystickReleaseAll(joyControl);
         } else {
-            fprintf(stderr, "Usage: --joy-stats | --joy-button <1..128> down|up | --joy-axis x|y|z|rx|ry|rz|slider|dial <value> | --joy-release-all\n");
+            fprintf(stderr, "Usage: --joy-stats [A|B] | --joy-button [A|B] <1..128> down|up | --joy-axis [A|B] x|y|z|rx|ry|rz|slider|dial <value> | --joy-release-all [A|B]\n");
         }
 
         CloseHandle(joyControl);

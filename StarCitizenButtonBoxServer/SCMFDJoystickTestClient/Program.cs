@@ -7,7 +7,9 @@ internal static class Program
     static async Task<int> Main(string[] args)
     {
         try {
-            var delaySeconds = ConsumeDelay(ref args);
+            var delaySeconds = 0;
+            var slot = SCMFDJoystickSlot.A;
+            ConsumeOptions(ref args, ref delaySeconds, ref slot);
             if (delaySeconds > 0) {
                 Console.WriteLine($"Running command in {delaySeconds} seconds. Focus the target window now.");
                 await Task.Delay(TimeSpan.FromSeconds(delaySeconds));
@@ -18,7 +20,7 @@ internal static class Program
                 return 2;
             }
 
-            using var client = new SCMFDJoystickHidClient(Console.WriteLine);
+            using var client = new SCMFDJoystickHidClient(Console.WriteLine, slot);
             switch (args[0].ToLowerInvariant()) {
                 case "stats":
                     PrintStats(client.GetStats());
@@ -56,18 +58,40 @@ internal static class Program
         }
     }
 
-    static int ConsumeDelay(ref string[] args)
+    static void ConsumeOptions(ref string[] args, ref int delaySeconds, ref SCMFDJoystickSlot slot)
     {
-        if (args.Length < 2 || !string.Equals(args[0], "--delay", StringComparison.OrdinalIgnoreCase)) {
-            return 0;
+        var remaining = new List<string>();
+        for (var i = 0; i < args.Length; i++) {
+            if (string.Equals(args[i], "--delay", StringComparison.OrdinalIgnoreCase)) {
+                if (++i >= args.Length || !int.TryParse(args[i], out delaySeconds) || delaySeconds < 0) {
+                    throw new ArgumentException("--delay must be a non-negative integer number of seconds.");
+                }
+                continue;
+            }
+
+            if (string.Equals(args[i], "--device", StringComparison.OrdinalIgnoreCase)) {
+                if (++i >= args.Length) {
+                    throw new ArgumentException("--device must be A, B, or legacy.");
+                }
+                slot = ParseSlot(args[i]);
+                continue;
+            }
+
+            remaining.Add(args[i]);
         }
 
-        if (!int.TryParse(args[1], out var delaySeconds) || delaySeconds < 0) {
-            throw new ArgumentException("--delay must be a non-negative integer number of seconds.");
-        }
+        args = remaining.ToArray();
+    }
 
-        args = args.Skip(2).ToArray();
-        return delaySeconds;
+    static SCMFDJoystickSlot ParseSlot(string value)
+    {
+        return value.ToLowerInvariant() switch
+        {
+            "a" => SCMFDJoystickSlot.A,
+            "b" => SCMFDJoystickSlot.B,
+            "legacy" => SCMFDJoystickSlot.Legacy,
+            _ => throw new ArgumentException("--device must be A, B, or legacy.")
+        };
     }
 
     static bool ParseButtonState(string value)
@@ -109,6 +133,6 @@ internal static class Program
         Console.WriteLine("  button <1..128> down|up");
         Console.WriteLine("  axis x|y|z|rx|ry|rz|slider|dial <-32768..32767>");
         Console.WriteLine("  release-all");
-        Console.WriteLine("  --delay <seconds> <command>");
+        Console.WriteLine("  [--delay <seconds>] [--device A|B|legacy] <command>");
     }
 }

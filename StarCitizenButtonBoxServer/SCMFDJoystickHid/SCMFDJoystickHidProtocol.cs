@@ -3,7 +3,9 @@ namespace StarCitizenButtonBoxServer.SCMFDJoystickHid;
 internal static class SCMFDJoystickHidProtocol
 {
     internal const ushort VendorId = 0xDEED;
-    internal const ushort ProductId = 0xF00D;
+    internal const ushort ProductIdLegacy = 0xF00D;
+    internal const ushort ProductIdA = 0xF10A;
+    internal const ushort ProductIdB = 0xF00B;
 
     internal const byte ControlCollectionReportId = 0x01;
     internal const byte JoystickCollectionReportId = 0x02;

@@ -12,7 +12,10 @@ $ErrorActionPreference = 'Stop'
 
 Write-Host '=== SCMFD Joystick root devices ===' -ForegroundColor Cyan
 $devices = @(Get-PnpDevice -ErrorAction SilentlyContinue | Where-Object {
-    $_.FriendlyName -like '*SCMFD Joystick*' -or $_.InstanceId -like 'ROOT\SCMFD_Joystick_Root*'
+    $_.FriendlyName -like '*SCMFD Joystick*' -or
+    $_.InstanceId -like 'ROOT\SCMFD_Joystick_A*' -or
+    $_.InstanceId -like 'ROOT\SCMFD_Joystick_B*' -or
+    $_.InstanceId -like 'ROOT\SCMFD_Joystick_Root*'
 })
 if ($devices.Count -eq 0) {
     Write-Warning 'No SCMFD Joystick root PnP devices found.'

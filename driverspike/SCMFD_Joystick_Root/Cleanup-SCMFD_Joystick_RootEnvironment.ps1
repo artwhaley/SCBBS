@@ -5,7 +5,7 @@
 
 .DESCRIPTION
   Run in an elevated PowerShell. Targets the same scope as the Phase 2 audit:
-  - PnP devices: FriendlyName like *SCMFD Joystick* under ROOT\*
+  - PnP devices: FriendlyName like *SCMFD Joystick* under ROOT\*, including A/B production IDs and the legacy root ID.
   - pnputil packages: SCMFD_Joystick_Root.inf (any case), OR any package whose provider matches SCMFD_Joystick_Root.
 
   Order: remove devices first, then delete driver packages (newest OEM first).
@@ -108,9 +108,14 @@ if ($destructive -and -not (Test-Administrator)) {
     exit 1
 }
 
-Write-Host '=== Devices to remove (ROOT\* , FriendlyName *SCMFD Joystick*) ===' -ForegroundColor Cyan
+Write-Host '=== Devices to remove (ROOT\* , SCMFD Joystick A/B/legacy) ===' -ForegroundColor Cyan
 $devices = @(Get-PnpDevice -ErrorAction SilentlyContinue |
-    Where-Object { $_.FriendlyName -like '*SCMFD Joystick*' -and $_.InstanceId -like 'ROOT\*' })
+    Where-Object {
+        ($_.FriendlyName -like '*SCMFD Joystick*' -and $_.InstanceId -like 'ROOT\*') -or
+        $_.InstanceId -like 'ROOT\SCMFD_Joystick_A*' -or
+        $_.InstanceId -like 'ROOT\SCMFD_Joystick_B*' -or
+        $_.InstanceId -like 'ROOT\SCMFD_Joystick_Root*'
+    })
 if ($devices.Count -eq 0) {
     Write-Host '(none found)'
 }

@@ -35,8 +35,8 @@ NTSTATUS GetFeature(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request);
 NTSTATUS SetFeature(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request);
 NTSTATUS GetInputReport(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request, _Always_(_Out_) BOOLEAN *CompleteRequest);
 NTSTATUS SetOutputReport(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request);
-NTSTATUS GetString(_In_ WDFREQUEST Request);
-NTSTATUS GetIndexedString(_In_ WDFREQUEST Request);
+NTSTATUS GetString(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request);
+NTSTATUS GetIndexedString(_In_ PQUEUE_CONTEXT QueueContext, _In_ WDFREQUEST Request);
 
 EXTERN_C_END
 
