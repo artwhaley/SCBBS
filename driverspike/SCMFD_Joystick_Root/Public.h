@@ -1,0 +1,11 @@
+#ifndef PUBLIC_H
+#define PUBLIC_H
+
+#include <initguid.h>
+
+// {443159C0-CC3E-42C5-B4C3-135E5E786747}
+DEFINE_GUID(
+    GUID_DEVINTERFACE_SCMFD_JOYSTICK_ROOT_CONTROL,
+    0x443159c0, 0xcc3e, 0x42c5, 0xb4, 0xc3, 0x13, 0x5e, 0x5e, 0x78, 0x67, 0x47);
+
+#endif

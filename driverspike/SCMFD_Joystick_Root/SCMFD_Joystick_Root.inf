@@ -1,0 +1,117 @@
+;/*++
+;  HIDClass UMDF minidriver.
+;  Win11+ path mirrors vhidmini2 UMDF pattern (MsHidUmdf/WUDFRD include+needs).
+;  Win10 path keeps explicit UMDF service association for reliable local dev installs.
+;--*/
+[Version]
+Signature   = "$Windows NT$"
+Class       = HIDClass
+ClassGuid   = {745a17a0-74d3-11d0-b6fe-00a0c90f57da}
+Provider    = %ManufacturerName%
+DriverVer   = ;
+CatalogFile = SCMFD_Joystick_Root.cat
+PnpLockdown = 1
+
+[DestinationDirs]
+DefaultDestDir = 13
+UMDriverCopy = 12,UMDF
+
+[SourceDisksNames]
+1 = %DiskName%,,,
+
+[SourceDisksFiles]
+SCMFD_Joystick_Root.dll = 1
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64.10.0...22000
+%ManufacturerName% = StandardLegacy,NTamd64.10.0...14393
+
+[Standard.NTamd64.10.0...22000]
+%DeviceName% = SCMFD_Joystick_Root_Inst_Win11, root\SCMFD_Joystick_Root
+
+[StandardLegacy.NTamd64.10.0...14393]
+%DeviceName% = SCMFD_Joystick_Root_Inst_Win10, root\SCMFD_Joystick_Root
+
+[SCMFD_Joystick_Root_Inst_Win11.NT]
+CopyFiles = UMDriverCopy
+Include = MsHidUmdf.inf
+Needs = MsHidUmdf.NT
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT
+
+[SCMFD_Joystick_Root_Inst_Win11.NT.hw]
+Include = MsHidUmdf.inf
+Needs = MsHidUmdf.NT.hw
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT.hw
+
+[SCMFD_Joystick_Root_Inst_Win11.NT.Services]
+Include = MsHidUmdf.inf
+Needs = MsHidUmdf.NT.Services
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT.Services
+
+[SCMFD_Joystick_Root_Inst_Win11.NT.Filters]
+Include = WUDFRD.inf
+Needs = WUDFRD_LowerFilter.NT.Filters
+
+[SCMFD_Joystick_Root_Inst_Win11.NT.Wdf]
+UmdfService = "SCMFD_Joystick_Root", SCMFD_Joystick_Root_ServiceInstall
+UmdfServiceOrder = SCMFD_Joystick_Root
+UmdfKernelModeClientPolicy = AllowKernelModeClients
+UmdfFileObjectPolicy = AllowNullAndUnknownFileObjects
+UmdfMethodNeitherAction = Copy
+UmdfFsContextUsePolicy = CanUseFsContext2
+
+[SCMFD_Joystick_Root_Inst_Win10.NT]
+CopyFiles = UMDriverCopy
+
+; Win10: same kernel service pattern as Microsoft WUDFVhidmini / UMDF HID filter docs —
+; AddService lines must be paired with LowerFilters so the reflector sits in the stack.
+; See "Specifying the Reflector in an INF File" (AddService + LowerFilters AddReg).
+[SCMFD_Joystick_Root_Inst_Win10.NT.hw]
+AddReg = SCMFD_Joystick_Root_Win10_DeviceHw_AddReg
+
+[SCMFD_Joystick_Root_Inst_Win10.NT.Filters]
+AddReg = SCMFD_Joystick_Root_Win10_DeviceHw_AddReg
+
+[SCMFD_Joystick_Root_Win10_DeviceHw_AddReg]
+HKR,,"LowerFilters",0x00010008,"WUDFRd"
+
+[SCMFD_Joystick_Root_Inst_Win10.NT.Services]
+AddService = WUDFRd,0x000001f8,WUDFRD_ServiceInstall
+AddService = mshidumdf,0x000001fa,mshidumdf.AddService
+
+[SCMFD_Joystick_Root_Inst_Win10.NT.Wdf]
+UmdfService = "SCMFD_Joystick_Root", SCMFD_Joystick_Root_ServiceInstall
+UmdfServiceOrder = SCMFD_Joystick_Root
+UmdfKernelModeClientPolicy = AllowKernelModeClients
+UmdfFileObjectPolicy = AllowNullAndUnknownFileObjects
+UmdfMethodNeitherAction = Copy
+UmdfFsContextUsePolicy = CanUseFsContext2
+
+[SCMFD_Joystick_Root_ServiceInstall]
+UmdfLibraryVersion = $UMDFVERSION$
+ServiceBinary = "%12%\UMDF\SCMFD_Joystick_Root.dll"
+
+[mshidumdf.AddService]
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %12%\mshidumdf.sys
+
+[WUDFRD_ServiceInstall]
+DisplayName = %WudfRdDisplayName%
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %12%\WUDFRd.sys
+
+[UMDriverCopy]
+SCMFD_Joystick_Root.dll
+
+[Strings]
+ManufacturerName = "SCMFD"
+DiskName = "SCMFD Joystick Root installation disk"
+DeviceName = "SCMFD Joystick Root"
+WudfRdDisplayName = "Windows Driver Foundation - User-mode Driver Framework Reflector"

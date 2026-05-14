@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 17.0.31903.0
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "SCMFD_Keyboard_Root", "SCMFD_Keyboard_Root\SCMFD_Keyboard_Root.vcxproj", "{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "SCMFD_Joystick_Root", "SCMFD_Joystick_Root\SCMFD_Joystick_Root.vcxproj", "{A2B6DBD7-C525-44EC-9210-94D2F3A03859}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC943}") = "TestEnumeratorAndClient", "TestEnumeratorAndClient\TestEnumeratorAndClient.vcxproj", "{6CA4E354-1605-4485-A18F-FE438D4EB47E}"
 EndProject
 Global
@@ -17,6 +19,10 @@ Global
 		{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}.Debug|x64.Build.0 = Debug|x64
 		{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}.Release|x64.ActiveCfg = Release|x64
 		{599FF144-2A3A-4BC7-96C9-7E1BF2FC9CF4}.Release|x64.Build.0 = Release|x64
+		{A2B6DBD7-C525-44EC-9210-94D2F3A03859}.Debug|x64.ActiveCfg = Debug|x64
+		{A2B6DBD7-C525-44EC-9210-94D2F3A03859}.Debug|x64.Build.0 = Debug|x64
+		{A2B6DBD7-C525-44EC-9210-94D2F3A03859}.Release|x64.ActiveCfg = Release|x64
+		{A2B6DBD7-C525-44EC-9210-94D2F3A03859}.Release|x64.Build.0 = Release|x64
 		{6CA4E354-1605-4485-A18F-FE438D4EB47E}.Debug|x64.ActiveCfg = Debug|x64
 		{6CA4E354-1605-4485-A18F-FE438D4EB47E}.Debug|x64.Build.0 = Debug|x64
 		{6CA4E354-1605-4485-A18F-FE438D4EB47E}.Release|x64.ActiveCfg = Release|x64
